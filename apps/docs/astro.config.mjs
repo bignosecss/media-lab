@@ -3,6 +3,7 @@ import starlight from '@astrojs/starlight';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import vue from '@astrojs/vue';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://medialab.dev',
@@ -27,4 +28,7 @@ export default defineConfig({
     react(),
     vue(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

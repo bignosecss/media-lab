@@ -1,5 +1,13 @@
-/* Starlight theme tuning (macOS pink). Tailwind is temporarily disabled while
-   we isolate a content-collection build issue. */
+@import "tailwindcss";
+
+/* Scan the adapter sources so the media component utilities are generated. */
+@source "../../../../packages/react/src";
+@source "../../../../packages/vue/src";
+
+/* The single design-token source (macOS pink): defines --color-media-*. */
+@import "../../../../theme/media.css";
+
+/* tint the Starlight chrome with the same macOS pink */
 :root {
   --sl-color-accent: #ff375f;
   --sl-color-accent-high: #ff6d8a;
