@@ -1,0 +1,10 @@
+{
+  "ignorePatterns": ["**/dist/**", "**/node_modules/**"],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

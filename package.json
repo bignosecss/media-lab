@@ -1,0 +1,21 @@
+{
+  "name": "react-media-player-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=22.19"
+  },
+  "scripts": {
+    "dev:demo": "pnpm --filter demo dev",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "lint": "oxlint",
+    "clean": "rimraf '**/{dist,*.tsbuildinfo}'"
+  },
+  "devDependencies": {
+    "oxlint": "^1.12.0",
+    "typescript": "^5.8.3"
+  }
+}
