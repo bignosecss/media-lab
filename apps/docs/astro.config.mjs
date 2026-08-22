@@ -6,14 +6,21 @@ import vue from '@astrojs/vue';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://medialab.dev',
+  site: 'https://github.com/bignosecss/media-lab',
   integrations: [
     starlight({
       title: 'medialab',
-      description: 'A framework-agnostic media player',
+      description: 'A framework-agnostic media player — React and Vue 3 adapters over a framework-free core.',
+      favicon: '/favicon.svg',
+      editLink: {
+        baseUrl: 'https://github.com/bignosecss/media-lab/edit/main/apps/docs/',
+      },
+      social: {
+        github: 'https://github.com/bignosecss/media-lab',
+      },
       customCss: ['./src/styles/global.css'],
       sidebar: [
-        { label: 'Intro', link: '/intro' },
+        { label: 'Intro', link: '/' },
         { label: 'Getting started', link: '/getting-started' },
         { label: 'Architecture', link: '/architecture' },
         { label: 'Core API', link: '/core' },

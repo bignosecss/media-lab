@@ -1,7 +1,0 @@
-@import "tailwindcss";
-
-/* Scan library sources so their Tailwind utilities are generated. */
-@source "../../../packages/react/src";
-
-/* Single source of truth for the media player's design tokens. */
-@import "../../../theme/media.css";

@@ -8,8 +8,7 @@ medialab is a framework-agnostic media player library with React and Vue 3 adapt
 packages/core         framework-free media controller (state + command; single source of truth)
 packages/react        React adapter + components: <MediaProvider>, hooks, play/pause, progress, volume
 packages/vue          Vue 3 adapter + components: <MediaProvider>, composables, play/pause, progress, volume
-apps/demo             React demo app (Tailwind v4 + CSS-variable tokens)
-apps/vue-demo         Vue 3 demo app (Tailwind v4 + CSS-variable tokens)
+apps/docs             Astro + Starlight docs site (live React + Vue playground)
 docs/                 architecture, design principles, docs standard
 .agents/notes/        decision records (implemented / proposed / archived / rejected)
 .agents/skills/       reusable agent workflows (pre-push checks, code review, ...)
@@ -19,7 +18,7 @@ docs/                 architecture, design principles, docs standard
 
 ```sh
 pnpm install
-pnpm dev:demo            # run the demo app
+pnpm dev:docs            # run the docs site (live React + Vue playground)
 pnpm typecheck           # tsc --noEmit across all packages
 pnpm test                # vitest across all packages
 pnpm lint                # oxlint across the repo
@@ -29,7 +28,7 @@ Run checks before pushing via [.agents/skills/pre-push-checks](.agents/skills/pr
 
 ## Conventions
 
-- Every package is `@medialab/<name>`; the demo app is `demo`. ESM everywhere (`"type": "module"`).
+- Every package is `@medialab/<name>`; the docs site is `docs`. ESM everywhere (`"type": "module"`).
 - **TypeScript strict** (`strict: true`, `noImplicitAny`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`). No `any` without an explaining comment.
 - **The media element is the single source of truth.** The core controller wraps an element, mirrors its native events into an immutable state snapshot, and applies commands. UI components never reach into the element directly — they read state and dispatch commands.
 - **Split is a hard boundary.** User-intent (a button press) becomes a `MediaCommand`; media state (paused, currentTime) is a `MediaState` snapshot. An element's presentational component never owns behavior state.

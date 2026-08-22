@@ -10,22 +10,20 @@ Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md
 packages/core         framework-free media controller (state + command; single source of truth)
 packages/react        React adapter + components (MediaProvider, hooks, play/pause, progress, volume)
 packages/vue          Vue 3 adapter + components (MediaProvider, composables, play/pause, progress, volume)
-apps/demo             React demo app (Tailwind v4 + CSS-variable tokens)
-apps/vue-demo         Vue 3 demo app (Tailwind v4 + CSS-variable tokens)
+apps/docs             Astro + Starlight docs site (with a live React + Vue playground)
 ```
 
 ## Commands
 
 ```sh
 pnpm install
-pnpm dev:demo         # run the React demo
-pnpm dev:vue-demo     # run the Vue 3 demo
+pnpm dev:docs         # run the docs site (live React + Vue playground)
 pnpm typecheck
 pnpm test
 pnpm lint
 ```
 
-> Publishing builds (`tsdown` → `dist/`) are intentionally deferred. This milestone ships the harness + dev loop; packages resolve from `src/` so `pnpm dev:demo` runs without a build step.
+> Publishing builds (`tsdown` → `dist/`) are intentionally deferred. Packages resolve from `src/`, so the docs site and tests run without a build step.
 
 ## Contributing (AI-Native workflow)
 

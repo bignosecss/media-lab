@@ -1,7 +1,0 @@
-@import "tailwindcss";
-
-/* Scan the Vue adapter's source so its Tailwind utilities are generated. */
-@source "../../../packages/vue/src";
-
-/* Single source of truth for the media player's design tokens. */
-@import "../../../theme/media.css";

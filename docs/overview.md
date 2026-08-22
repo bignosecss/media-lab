@@ -42,8 +42,7 @@ A framework-agnostic **media player** library with React and Vue 3 adapters, bui
 | `packages/core` | framework-free media layer: controller (playback), captions store (text tracks), `computeBufferedFraction` helper, types. Single source of truth over the media element. |
 | `packages/react` | React adapter + components (provider, hooks, all controller components). |
 | `packages/vue` | Vue 3 adapter + components (provider, composables, all controller components). |
-| `apps/demo` | React demo app (Vite + Tailwind). |
-| `apps/vue-demo` | Vue 3 demo app (Vite + Tailwind). |
+| `apps/docs` | Astro + Starlight docs site (with a live React + Vue playground). |
 | `theme/media.css` | the design tokens (`--media-*`), the single source of the visual language. |
 
 ## core state & commands
@@ -65,14 +64,13 @@ A framework-agnostic **media player** library with React and Vue 3 adapters, bui
 
 ## Design tokens
 
-`theme/media.css` defines the design system via `@theme` (`--color-media-accent`, `--color-media-buffer`, `--color-media-track`, `--color-media-control`, `--color-media-control-fg`, `--radius-media`) and generates the Tailwind utilities both adopters and demos consume. It is the single source; both demo `app.css` files `@import` it.
+`theme/media.css` defines the design system via `@theme` (`--color-media-accent`, `--color-media-buffer`, `--color-media-track`, `--color-media-control`, `--color-media-control-fg`, `--radius-media`) and generates the Tailwind utilities both adapters and the docs site consume. It is the single source; the docs `global.css` imports it.
 
 ## Commands
 
 ```sh
 pnpm install
-pnpm dev:demo         # React demo
-pnpm dev:vue-demo     # Vue 3 demo
+pnpm dev:docs         # docs site (live React + Vue playground)
 pnpm typecheck
 pnpm test
 pnpm lint

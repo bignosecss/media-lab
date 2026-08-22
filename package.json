@@ -21,8 +21,7 @@
     "node": ">=22.19"
   },
   "scripts": {
-    "dev:demo": "pnpm --filter demo dev",
-    "dev:vue-demo": "pnpm --filter vue-demo dev",
+    "dev:docs": "pnpm --filter docs dev",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "lint": "oxlint",

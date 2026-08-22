@@ -7,9 +7,25 @@
 /* The single design-token source (macOS pink): defines --color-media-*. */
 @import "../../../../theme/media.css";
 
-/* tint the Starlight chrome with the same macOS pink */
+/*
+ * Apply the macOS-pink accent to BOTH Starlight themes. Starlight scopes light
+ * under `:root` / `[data-theme='light']` and dark under `[data-theme='dark']`.
+ * We set the accent + derived variables in both, so the brand color is constant
+ * across themes (matching macOS / ChatGPT behaviour).
+ */
 :root {
   --sl-color-accent: #ff375f;
   --sl-color-accent-high: #ff6d8a;
-  --sl-color-accent-low: rgb(255 55 95 / 0.2);
+  --sl-color-accent-low: rgb(255 55 95 / 0.22);
+  --sl-color-text-accent: #ff375f;
+  --sl-color-bg-accent: #ff375f;
+  --sl-color-bg-inline-code: rgb(255 55 95 / 0.08);
+}
+
+[data-theme='dark'] {
+  --sl-color-accent: #ff375f;
+  --sl-color-accent-high: #ff8aa3;
+  --sl-color-accent-low: rgb(255 55 95 / 0.25);
+  --sl-color-text-accent: #ff7d95;
+  --sl-color-bg-accent: #ff375f;
 }
