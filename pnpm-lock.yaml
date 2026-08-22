@@ -61,6 +61,34 @@ importers:
         specifier: ^3.1.3
         version: 3.2.7(@types/node@22.20.1)(jiti@2.7.0)(jsdom@26.1.0)(lightningcss@1.32.0)
 
+  apps/vue-demo:
+    dependencies:
+      '@medialab/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@medialab/vue':
+        specifier: workspace:*
+        version: link:../../packages/vue
+      vue:
+        specifier: ^3.5.0
+        version: 3.5.41(typescript@5.9.3)
+    devDependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.1.8
+        version: 4.3.3(vite@6.4.3(@types/node@22.20.1)(jiti@2.7.0)(lightningcss@1.32.0))
+      '@types/node':
+        specifier: ^22.15.0
+        version: 22.20.1
+      tailwindcss:
+        specifier: ^4.1.8
+        version: 4.3.3
+      typescript:
+        specifier: ^5.8.3
+        version: 5.9.3
+      vite:
+        specifier: ^6.3.5
+        version: 6.4.3(@types/node@22.20.1)(jiti@2.7.0)(lightningcss@1.32.0)
+
   packages/core:
     devDependencies:
       vitest:

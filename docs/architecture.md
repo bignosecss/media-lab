@@ -2,7 +2,7 @@
 
 ## Goal
 
-A React-only media player where **every piece of UI is an independently usable component** and **one centralized controller is the single source of truth** for the underlying media element. There is no web-component code.
+A framework-agnostic media player (React and Vue 3 adapters) where **every piece of UI is an independently usable component** and **one centralized controller is the single source of truth** for the underlying media element. There is no web-component code.
 
 The design is inspired by (but not a copy of) [media-chrome](https://www.media-chrome.org/docs/en/architecture); see [design-principles.md](design-principles.md) for the principles we follow and the React-specific adaptations.
 
@@ -78,7 +78,7 @@ Adding a framework means adding an adapter, not changing `core`:
 
 An adapter contract is five capabilities: **provide** the controller (context/`provide`), **read** state (`useMediaState`/a composable), **dispatch** commands (`useMediaCommand`), **own & attach the element** (`<MediaProvider>`/a provider), and (optionally) **read** the element. The command/state types and the controller are shared; only the glue and markup are per-framework.
 
-Currently only React is supported (adapter + components in `packages/react`). `packages/vue` is a **proof-of-concept** that reuses the same `@medialab/core` to validate the seam — it is a reference for a future supported adapter, not a shipped framework path.
+Both React and Vue 3 are supported: `packages/react` and `packages/vue` each bundle an adapter + its presentational components over the shared `@medialab/core`. Adding another framework means adding one more bundle of this shape — the core and the seam never change.
 
 ## Component model
 

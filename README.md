@@ -1,6 +1,6 @@
 # medialab
 
-A React-only media player library (and the AI-Native harness that builds it), modeled on [media-chrome](https://www.media-chrome.org/docs/en/architecture)'s architecture: independently usable controller components, a centralized controller that is the single source of truth for media state, and a split between user-intent events and media state.
+A framework-agnostic media player library (React and Vue 3 adapters) and the AI-Native harness that builds it, modeled on [media-chrome](https://www.media-chrome.org/docs/en/architecture)'s architecture: independently usable controller components, a centralized controller that is the single source of truth for media state, and a split between user-intent events and media state.
 
 Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md](docs/design-principles.md) before changing `packages/`.
 
@@ -9,15 +9,17 @@ Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md
 ```
 packages/core         framework-free media controller (state + command; single source of truth)
 packages/react        React adapter + components (MediaProvider, hooks, play/pause, progress, volume)
-packages/vue          Vue adapter + composables (proof-of-concept of the framework-agnostic seam)
-apps/demo             Vite demo app (Tailwind v4 + CSS-variable tokens)
+packages/vue          Vue 3 adapter + components (MediaProvider, composables, play/pause, progress, volume)
+apps/demo             React demo app (Tailwind v4 + CSS-variable tokens)
+apps/vue-demo         Vue 3 demo app (Tailwind v4 + CSS-variable tokens)
 ```
 
 ## Commands
 
 ```sh
 pnpm install
-pnpm dev:demo         # run the demo
+pnpm dev:demo         # run the React demo
+pnpm dev:vue-demo     # run the Vue 3 demo
 pnpm typecheck
 pnpm test
 pnpm lint

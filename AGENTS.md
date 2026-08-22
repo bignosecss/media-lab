@@ -1,14 +1,15 @@
 # AGENTS.md
 
-medialab is a React-only media player library built on an AI-Native harness. **Everything is a React component or a framework-agnostic controller**; there is no web-component code. Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md](docs/design-principles.md) before changing `packages/`.
+medialab is a framework-agnostic media player library with React and Vue 3 adapters, built on an AI-Native harness: a framework-free `core` controller plus per-framework adapter + component packages. There is no web-component code. Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md](docs/design-principles.md) before changing `packages/`.
 
 ## Repository layout
 
 ```
 packages/core         framework-free media controller (state + command; single source of truth)
 packages/react        React adapter + components: <MediaProvider>, hooks, play/pause, progress, volume
-packages/vue          Vue adapter + composables (proof of the framework-agnostic seam)
-apps/demo             Vite demo app (Tailwind v4 + CSS-variable tokens)
+packages/vue          Vue 3 adapter + components: <MediaProvider>, composables, play/pause, progress, volume
+apps/demo             React demo app (Tailwind v4 + CSS-variable tokens)
+apps/vue-demo         Vue 3 demo app (Tailwind v4 + CSS-variable tokens)
 docs/                 architecture, design principles, docs standard
 .agents/notes/        decision records (implemented / proposed / archived / rejected)
 .agents/skills/       reusable agent workflows (pre-push checks, code review, ...)
