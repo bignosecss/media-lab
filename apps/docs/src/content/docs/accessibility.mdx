@@ -1,0 +1,26 @@
+---
+title: Accessibility
+description: How the player stays accessible in both frameworks.
+---
+
+medialab is accessible by construction, not by styling.
+
+## Accessible primitives
+
+- **React** uses **Base UI** (`@base-ui-components/react`): battle-tested keyboard navigation, ARIA slider semantics, focus management and drag handling (see [design principles](/design-system) — one primitive backend, never mixed).
+- **Vue** uses **native elements** (Base UI is React-only): `<button>`, native `<input type="range">` (keyboard + ARIA for free), native `<select>`.
+
+## What each control does
+
+- `MediaPlayButton` — a native `<button>` with a labelled play/pause aria-label.
+- `MediaProgress` — an ARIA slider (`role="slider"`, value/min/max, keyboard arrow keys) with the buffered layer inside the same track.
+- `MediaVolume` — a mute toggle button + an ARIA volume slider.
+- `MediaPlaybackRate` — a labelled native `<select>`.
+- `MediaCaptionsButton` — `aria-pressed` state; `MediaTextTrackDisplay` uses `role="status"`.
+- `MediaFullscreenButton` — labelled; fullscreen state is announced via the label.
+
+## Principles
+
+- **Semantic, native-first elements**; ARIA only where the platform has no equivalent.
+- **Keyboard and pointer are equal** — every control is reachable and operable by keyboard.
+- **Independently usable** — each component carries its own label and state; no component assumes another.

@@ -8,24 +8,18 @@
 @import "../../../../theme/media.css";
 
 /*
- * Apply the macOS-pink accent to BOTH Starlight themes. Starlight scopes light
- * under `:root` / `[data-theme='light']` and dark under `[data-theme='dark']`.
- * We set the accent + derived variables in both, so the brand color is constant
- * across themes (matching macOS / ChatGPT behaviour).
+ * Starlight's accent lives on `:root` (light) and `[data-theme='dark']` and uses
+ * its own default (a blue). We re-point it to the PROJECT theme token and force
+ * it with `!important` so the macOS-pink accent wins in BOTH themes (matching
+ * macOS / ChatGPT behaviour). One source of truth: theme/media.css.
  */
-:root {
-  --sl-color-accent: #ff375f;
-  --sl-color-accent-high: #ff6d8a;
-  --sl-color-accent-low: rgb(255 55 95 / 0.22);
-  --sl-color-text-accent: #ff375f;
-  --sl-color-bg-accent: #ff375f;
-  --sl-color-bg-inline-code: rgb(255 55 95 / 0.08);
-}
-
-[data-theme='dark'] {
-  --sl-color-accent: #ff375f;
-  --sl-color-accent-high: #ff8aa3;
-  --sl-color-accent-low: rgb(255 55 95 / 0.25);
-  --sl-color-text-accent: #ff7d95;
-  --sl-color-bg-accent: #ff375f;
+:root,
+:root[data-theme='light'],
+:root[data-theme='dark'] {
+  --sl-color-accent: var(--color-media-accent, #ff375f) !important;
+  --sl-color-accent-high: #ff7d95 !important;
+  --sl-color-accent-low: rgb(255 55 95 / 0.22) !important;
+  --sl-color-text-accent: var(--color-media-accent, #ff375f) !important;
+  --sl-color-bg-accent: var(--color-media-accent, #ff375f) !important;
+  --sl-color-bg-inline-code: rgb(255 55 95 / 0.08) !important;
 }

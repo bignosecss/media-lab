@@ -1,0 +1,50 @@
+---
+title: API reference
+description: The framework-free core API, the React hooks, and the Vue 3 composables.
+---
+
+## `@medialab/core`
+
+Everything in core is framework-free (no React/Vue import). The media element stays the single source of truth.
+
+### `createMediaController()`
+
+```ts
+const controller = createMediaController();
+controller.attach(element);                    // or null to clear
+const unsubscribe = controller.subscribe(() => {
+  console.log(controller.getState());
+});
+controller.dispatch({ type: 'togglePlay' });   // the only way to mutate media
+```
+
+- `attach(element)` / `detach()` — bind/unbind the media element.
+- `subscribe(listener)` — get notified on state changes; returns an unsubscribe.
+- `getState()` → `MediaState`.
+- `dispatch(command)` → apply a `MediaCommand`.
+- `getMediaElement()` — the attached element.
+
+**MediaState**: `paused`, `currentTime`, `duration`, `volume`, `muted`, `playbackRate`, `ended`, `buffered: {start,end}[]`, `buffering`, `error`.
+
+**MediaCommand**: `play`, `pause`, `togglePlay`, `seek{time}`, `setVolume{value}`, `setMuted{value}`, `toggleMute`, `setPlaybackRate{rate}`.
+
+### `createMediaCaptions(getTextTracks)`
+
+A captions store over the element's `textTracks` — the captions analogue of the controller.
+
+- `subscribe` / `getState()` → `MediaCaptionsState` (`tracks`, `activeTrackId`, `isEnabled`, `cues`).
+- `setEnabled(enabled)` / `setActiveTrack(id)` / `refresh()`.
+
+### `computeBufferedFraction(buffered, duration)`
+
+The 0..1 buffered fraction both `MediaProgress` and `MediaBufferedBar` derive from — the single home for that math.
+
+## `@medialab/react`
+
+- `<MediaProvider src={...} renderMedia={...} containerClassName={...} controller={...}>` — owns the element + a container (the fullscreen target).
+- `useMediaState(selector?)`, `useMediaCommand()`, `useMediaElement()`, `useMediaController()`, `useMediaFullscreen()`, `useMediaCaptions()`.
+
+## `@medialab/vue`
+
+- `<MediaProvider :src="..." container-class-name="...">` — same role as React.
+- `useMediaState(selector?)` → `Ref<T>`, `useMediaCommand()`, `useMediaElement()`, `useMediaController()`, `useMediaFullscreen()`, `useMediaCaptions()`.

@@ -6,7 +6,7 @@ import vue from '@astrojs/vue';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://github.com/bignosecss/media-lab',
+  site: 'https://bignosecss.github.io/media-lab/',
   integrations: [
     starlight({
       title: 'medialab',
@@ -27,8 +27,11 @@ export default defineConfig({
         { label: 'React', link: '/react' },
         { label: 'Vue', link: '/vue' },
         { label: 'Components', link: '/components' },
+        { label: 'API reference', link: '/api-reference' },
+        { label: 'Accessibility', link: '/accessibility' },
         { label: 'Design system', link: '/design-system' },
         { label: 'Playground', link: '/playground' },
+        { label: 'License', link: '/license' },
       ],
     }),
     mdx(),
