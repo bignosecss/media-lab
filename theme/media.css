@@ -1,16 +1,20 @@
 /*
  * medialab design tokens — the single source of truth for the media player's
- * visual language. Both framework adapters (React, Vue) and both demos consume
- * these via Tailwind v4 `@theme`, so the tokens live in one place.
+ * visual language. Both framework adapters (React, Vue), both the docs site and
+ * the media player components consume these via Tailwind v4 `@theme`, so the
+ * tokens live in one place.
  *
- * @theme defines CSS custom properties under the `--color-media-*` namespace and
- * generates the matching Tailwind utilities (e.g. `bg-media-accent`,
- * `text-media-control-fg`). The accent is macOS system pink.
+ * The accent is a pink that DRAWS ON / is INSPIRED BY the macOS pink — it is not
+ * the exact macOS system color. Derived shades follow common design practice:
+ * darken for hover/press (`accent-strong`), lighten for emphasis on dark
+ * (`accent-high`), translucent for subtle backgrounds (`accent-low`).
  */
 @theme {
-  --color-media-accent: #ff375f;
-  --color-media-accent-strong: #e0244e;
-  --color-media-buffer: #ff9db1;
+  --color-media-accent: #f077af;
+  --color-media-accent-strong: #ce6697;
+  --color-media-accent-high: #f28dbc;
+  --color-media-accent-low: rgb(240 119 175 / 0.2);
+  --color-media-buffer: #f6b0d1;
   --color-media-track: #94a3b8;
   --color-media-control: rgb(17 17 23 / 0.72);
   --color-media-control-fg: #ffffff;

@@ -4,22 +4,22 @@
 @source "../../../../packages/react/src";
 @source "../../../../packages/vue/src";
 
-/* The single design-token source (macOS pink): defines --color-media-*. */
+/* The single design-token source (a pink drawing on macOS): defines --color-media-*. */
 @import "../../../../theme/media.css";
 
 /*
  * Starlight's accent lives on `:root` (light) and `[data-theme='dark']` and uses
  * its own default (a blue). We re-point it to the PROJECT theme token and force
- * it with `!important` so the macOS-pink accent wins in BOTH themes (matching
- * macOS / ChatGPT behaviour). One source of truth: theme/media.css.
+ * it with `!important` so the pink accent wins in BOTH themes. One source of
+ * truth: theme/media.css.
  */
 :root,
 :root[data-theme='light'],
 :root[data-theme='dark'] {
-  --sl-color-accent: var(--color-media-accent, #ff375f) !important;
-  --sl-color-accent-high: #ff7d95 !important;
-  --sl-color-accent-low: rgb(255 55 95 / 0.22) !important;
-  --sl-color-text-accent: var(--color-media-accent, #ff375f) !important;
-  --sl-color-bg-accent: var(--color-media-accent, #ff375f) !important;
-  --sl-color-bg-inline-code: rgb(255 55 95 / 0.08) !important;
+  --sl-color-accent: var(--color-media-accent, #f077af) !important;
+  --sl-color-accent-high: var(--color-media-accent-high, #f28dbc) !important;
+  --sl-color-accent-low: var(--color-media-accent-low, rgb(240 119 175 / 0.2)) !important;
+  --sl-color-text-accent: var(--color-media-accent, #f077af) !important;
+  --sl-color-bg-accent: var(--color-media-accent, #f077af) !important;
+  --sl-color-bg-inline-code: var(--color-media-accent-low, rgb(240 119 175 / 0.1)) !important;
 }
