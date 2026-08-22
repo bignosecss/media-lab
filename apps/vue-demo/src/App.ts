@@ -1,8 +1,11 @@
 import { defineComponent, h } from 'vue';
 import {
+  MediaBufferedBar,
+  MediaPlaybackRate,
   MediaPlayButton,
   MediaProgress,
   MediaProvider,
+  MediaTimeDisplay,
   MediaVolume,
 } from '@medialab/vue';
 
@@ -22,8 +25,10 @@ export const App = defineComponent({
               default: () =>
                 h('div', { class: 'flex items-center gap-3 rounded-2xl bg-black/60 p-3' }, [
                   h(MediaPlayButton),
-                  h('div', { class: 'flex-1' }, [h(MediaProgress)]),
+                  h(MediaTimeDisplay),
+                  h('div', { class: 'flex-1 space-y-1' }, [h(MediaBufferedBar), h(MediaProgress)]),
                   h(MediaVolume),
+                  h(MediaPlaybackRate),
                 ]),
             },
           ),

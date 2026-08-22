@@ -1,8 +1,11 @@
 import type { Ref } from 'react';
 import {
+  MediaBufferedBar,
+  MediaPlaybackRate,
   MediaPlayButton,
   MediaProgress,
   MediaProvider,
+  MediaTimeDisplay,
   MediaVolume,
 } from '@medialab/react';
 
@@ -26,10 +29,13 @@ export function App() {
         >
           <div className="flex items-center gap-3 rounded-2xl bg-black/60 p-3">
             <MediaPlayButton />
-            <div className="flex-1">
+            <MediaTimeDisplay />
+            <div className="flex-1 space-y-1">
+              <MediaBufferedBar />
               <MediaProgress />
             </div>
             <MediaVolume />
+            <MediaPlaybackRate />
           </div>
         </MediaProvider>
       </div>

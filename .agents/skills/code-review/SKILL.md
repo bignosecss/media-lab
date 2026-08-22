@@ -11,10 +11,12 @@ An independent read of a change before merge. The reviewer has not seen the auth
 ## What to evaluate
 
 **Architecture boundary (hard rules)**
-- `packages/core` stays framework-agnostic: no `react`/`react-dom` import, no DOM-only assumptions beyond the media element.
-- `packages/react` is the only place that touches React context/`useSyncExternalStore`.
-- `packages/components` reads state and dispatches commands only; it never touches the media element or owns behavior state.
+- `packages/core` stays framework-agnostic: no `react`/`vue` import, no DOM-only assumptions beyond the media element.
+- `packages/react` is the React bundle: only it touches React context/`useSyncExternalStore`.
+- `packages/vue` is the Vue 3 bundle: only it touches `provide`/`inject`/`shallowRef`.
+- A framework's presentational components read state and dispatch commands only; they never touch the media element or own behavior state.
 - No component reaches into the element (`element.play()` etc.) — it dispatches a `MediaCommand`.
+- No component mixes primitive backends: Base UI is React-only, so the Vue bundle uses native elements.
 
 **State/command contract**
 - Commands are members of the `MediaCommand` union; all members have a applying branch in the controller.

@@ -5,4 +5,7 @@ export { useMediaCommand, useMediaElement, useMediaState } from './hooks.ts';
 export { MediaPlayButton } from './components/MediaPlayButton.ts';
 export { MediaProgress } from './components/MediaProgress.ts';
 export { MediaVolume } from './components/MediaVolume.ts';
+export { MediaTimeDisplay } from './components/MediaTimeDisplay.ts';
+export { MediaBufferedBar } from './components/MediaBufferedBar.ts';
+export { MediaPlaybackRate } from './components/MediaPlaybackRate.ts';
 export type { MediaCommand, MediaController, MediaState } from '@medialab/core';
