@@ -76,7 +76,7 @@ describe('controller components', () => {
     render(<MediaProgress />, { wrapper });
     const slider = screen.getByRole('slider', { name: 'Seek' });
     expect(slider).toBeTruthy();
-    expect(slider.getAttribute('aria-valuemax')).toBe('120');
+    expect(slider.getAttribute('max')).toBe('120');
     expect(slider.getAttribute('aria-valuenow')).toBe('0');
   });
 

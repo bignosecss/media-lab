@@ -10,7 +10,7 @@ Each fact has one home; elsewhere, link there.
 |---|---|
 | Root `AGENTS.md` | Standing orders an agent needs every session, one to three lines each, linking its home |
 | `docs/architecture.md` | Ordered map: layering, the controller (single source of truth), command/state flow, extension points |
-| `docs/design-principles.md` | The design principles this project commits to, and the rationale for the choices (React-only, Tailwind + tokens, Radix primitives) |
+| `docs/design-principles.md` | The design principles this project commits to, and the rationale for the choices (React-only, Tailwind + tokens, Base UI primitives) |
 | `.agents/notes/` | Active decision records: the why and what was given up; `implemented/` notes describe shipped reality in present tense |
 | Package README | The per-package contract: config, semantics, limitations, extension points |
 

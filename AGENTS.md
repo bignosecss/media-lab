@@ -34,6 +34,7 @@ Run checks before pushing via [.agents/skills/pre-push-checks](.agents/skills/pr
 - **Split is a hard boundary.** User-intent (a button press) becomes a `MediaCommand`; media state (paused, currentTime) is a `MediaState` snapshot. An element's presentational component never owns behavior state.
 - **Events for user actions, attrs/props for media state** (media-chrome principle): components emit intents, the controller owns state.
 - **Independently usable components.** Each component is importable on its own, carries a default style, and accepts a `className` and a `children`/render-prop escape hatch.
+- **One primitive backend.** Accessible primitives come from Base UI (`@base-ui-components/react`). Never mix Base UI, Radix, or React Aria APIs in the same component; agents must not introduce a second primitive library without an Agent Note.
 - **One home per fact.** A decision lives once — in a doc or an Agent Note; elsewhere link, don't restate. Non-trivial changes carry an **Agent Note** in the same PR ([when](#agent-notes)).
 - Files end with exactly one trailing newline.
 

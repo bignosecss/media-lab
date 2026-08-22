@@ -24,9 +24,11 @@ media-chrome moved from UI elements discovering a media container (and holding a
 
 State is *derived from the element*, not mirrored in a separate store that can drift. The controller subscribes to native events and projects them into an immutable snapshot; the element's own values always win.
 
-## Adopt accessible primitives (Radix), not a UI kit
+## Adopt accessible primitives (Base UI), not a UI kit
 
-Accessibility comes from battle-tested primitives, not from a styling library. We use `@radix-ui/react-slider` for the progress and volume controls (keyboard navigation, ARIA slider semantics, focus management, drag handling). We do **not** adopt the full shadcn/ui system (CLI, registry, components.json) — it is app-oriented and adds churn we don't need. We follow the **shadcn pattern**: headless Radix primitives + Tailwind v4 utilities + CSS-variable design tokens, with the components owned (copied) in our repo so users can restyle or replace them.
+Accessibility comes from battle-tested primitives, not from a styling library. We use **Base UI** (`@base-ui-components/react`) for the progress and volume controls (keyboard navigation, ARIA slider semantics, focus management, drag handling). We do **not** adopt the full shadcn/ui system (CLI, registry, components.json) — it is app-oriented and adds churn we don't need. We follow the **shadcn pattern**: headless primitives + Tailwind v4 utilities + CSS-variable design tokens, with the components owned in our repo so users can restyle or replace them.
+
+**One backend, documented.** We chose Base UI (shadcn/ui's current default) over Radix for two reasons: the ecosystem and component coverage (the menus / selects / combo boxes we'll need for settings, subtitle and track selection) are moving there, and locking a single backend in the harness prevents AI-assisted tooling from silently mixing Base UI and Radix APIs. The backend is part of the project contract in `AGENTS.md`; agents must not mix primitive libraries. Base UI is at `1.0.0-rc.0` — a release candidate that shadcn/ui already ships as its default; treat it as production-ready, but pin the version.
 
 ## Styling: Tailwind v4 + CSS-variable tokens
 

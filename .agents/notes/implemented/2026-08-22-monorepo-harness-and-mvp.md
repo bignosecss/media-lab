@@ -16,7 +16,7 @@ Starting a React-only media player from scratch, modeled on media-chrome's archi
 - **Core is React-free**: it wraps a media element, mirrors native events into an immutable `MediaState`, applies a discriminated-union `MediaCommand`, and is the only reader/writer of the element. Components never reach into the element.
 - **React bindings** subscribe via `useSyncExternalStore`; `<MediaProvider>` **owns** the element (default `<video>`, `renderMedia` is the escape hatch) and exposes the controller via context.
 - **Styling**: Tailwind v4 utilities + a CSS-variable token namespace (`--media-*`, defined through `@theme`) so users can restyle without forking.
-- **Accessible primitives via Radix**, not the full shadcn/ui system: we use `@radix-ui/react-slider` for progress and volume and follow the shadcn copy-in pattern rather than adopting its CLI/registry.
+- **Accessible primitives via Base UI**, not the full shadcn/ui system: we use `@base-ui-components/react` (`Slider`) for progress and volume and follow the shadcn copy-in pattern rather than adopting its CLI/registry. See the [Base UI primitives note](2026-08-22-base-ui-primitives.md).
 
 ## Why
 
