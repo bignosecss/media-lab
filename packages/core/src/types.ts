@@ -40,7 +40,8 @@ export type MediaCommand =
   | { type: 'seek'; time: number }
   | { type: 'setVolume'; value: number }
   | { type: 'setMuted'; value: boolean }
-  | { type: 'toggleMute' };
+  | { type: 'toggleMute' }
+  | { type: 'setPlaybackRate'; rate: number };
 
 /**
  * The minimal media surface the controller reads and mutates. A real

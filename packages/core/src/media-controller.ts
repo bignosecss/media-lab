@@ -143,6 +143,9 @@ export function createMediaController(): MediaController {
       case 'toggleMute':
         element.muted = !element.muted;
         break;
+      case 'setPlaybackRate':
+        element.playbackRate = command.rate;
+        break;
     }
     sync();
   }

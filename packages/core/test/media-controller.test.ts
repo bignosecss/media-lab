@@ -108,6 +108,13 @@ describe('createMediaController', () => {
     expect(el.volume).toBe(1);
   });
 
+  it('setPlaybackRate sets the rate on the element', () => {
+    const { controller, el } = makeController();
+    controller.dispatch({ type: 'setPlaybackRate', rate: 1.5 });
+    expect(el.playbackRate).toBe(1.5);
+    expect(lastState(controller).playbackRate).toBe(1.5);
+  });
+
   it('notifies subscribers and unsubscribes', () => {
     const { controller, el } = makeController();
     let count = 0;
