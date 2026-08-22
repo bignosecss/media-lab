@@ -1,3 +1,4 @@
+import { computeBufferedFraction } from '@medialab/core';
 import { defineComponent, h } from 'vue';
 import { useMediaCommand, useMediaState } from '../hooks.ts';
 import { cn } from '../lib/cn.ts';
@@ -20,8 +21,7 @@ export const MediaProgress = defineComponent({
     return () => {
       const max = Number.isFinite(duration.value) && duration.value > 0 ? duration.value : 0;
       const playedPct = max > 0 ? Math.min(100, (currentTime.value / max) * 100) : 0;
-      const bufferedEnd = buffered.value.reduce((furthest, range) => Math.max(furthest, range.end), 0);
-      const bufferPct = max > 0 ? Math.min(100, (bufferedEnd / max) * 100) : 0;
+      const bufferPct = computeBufferedFraction(buffered.value, max) * 100;
 
       return h(
         'div',

@@ -86,7 +86,7 @@ describe('Vue media feature components', () => {
     expect(wrapper.get('span').text()).toBe('0:00 / 0:00');
   });
 
-  it('MediaBufferedBar renders one segment per buffered range', async () => {
+  it('MediaBufferedBar renders the buffered fraction as a single segment', async () => {
     const element = new FakeMediaElement();
     element.setBuffered([[10, 30]]);
     const { wrapper } = mountWith(element, MediaBufferedBar);
@@ -95,14 +95,14 @@ describe('Vue media feature components', () => {
     const bar = wrapper.get('div[role="presentation"]');
     expect(bar.attributes('aria-hidden')).toBe('true');
 
-    const segments = wrapper.findAll('div.bg-media-track');
+    const segments = wrapper.findAll('div.bg-media-buffer');
     expect(segments).toHaveLength(1);
 
     const style = segments[0]?.attributes('style') ?? '';
     const left = Number.parseFloat(style.match(/left:\s*([\d.]+)%/)?.[1] ?? '0');
     const width = Number.parseFloat(style.match(/width:\s*([\d.]+)%/)?.[1] ?? '0');
-    expect(left).toBeCloseTo((10 / 120) * 100, 1);
-    expect(width).toBeCloseTo((20 / 120) * 100, 1);
+    expect(left).toBe(0);
+    expect(width).toBeCloseTo((30 / 120) * 100, 1);
   });
 
   it('MediaPlaybackRate dispatches setPlaybackRate on change', async () => {

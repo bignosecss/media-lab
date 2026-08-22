@@ -12,3 +12,4 @@ export type { TextTrackLike, TextTrackListLike } from './media-captions.ts';
 export { createMediaCaptions } from './media-captions.ts';
 export type { MediaController } from './media-controller.ts';
 export { createMediaController } from './media-controller.ts';
+export { computeBufferedFraction } from './buffered.ts';

@@ -1,3 +1,4 @@
+import { computeBufferedFraction } from '@medialab/core';
 import { useMediaCommand, useMediaState } from './hooks.ts';
 import { Slider } from './primitives/slider.tsx';
 
@@ -17,8 +18,7 @@ export function MediaProgress({ className }: MediaProgressProps) {
   const command = useMediaCommand();
 
   const max = Number.isFinite(duration) && duration > 0 ? duration : 0;
-  const bufferedEnd = buffered.reduce((furthest, range) => Math.max(furthest, range.end), 0);
-  const bufferedFraction = max > 0 ? Math.min(1, bufferedEnd / max) : 0;
+  const bufferedFraction = computeBufferedFraction(buffered, max);
 
   return (
     <Slider
