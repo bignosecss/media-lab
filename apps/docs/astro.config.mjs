@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://bignosecss.github.io/media-lab/',
+  base: '/media-lab/',
   integrations: [
     starlight({
       title: 'medialab',
