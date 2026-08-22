@@ -8,8 +8,10 @@ import {
   type Ref,
 } from 'react';
 import {
+  createMediaCaptions,
   createMediaController,
   type MediaController,
+  type TextTrackListLike,
 } from '@medialab/core';
 import { MediaContext, type MediaFullscreen } from './controller-context.ts';
 
@@ -57,14 +59,23 @@ export function MediaProvider({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const captions = useMemo(
+    () =>
+      createMediaCaptions(
+        () => mediaRef.current?.textTracks as unknown as TextTrackListLike | null,
+      ),
+    [],
+  );
+
   const setVideoRef = useCallback((node: HTMLVideoElement | null) => {
     mediaRef.current = node;
   }, []);
 
   useEffect(() => {
     controller.attach(mediaRef.current);
+    captions.refresh();
     return () => controller.detach();
-  }, [controller]);
+  }, [controller, captions]);
 
   useEffect(() => {
     const onFullscreenChange = () => {
@@ -93,7 +104,7 @@ export function MediaProvider({
     [isFullscreen, toggleFullscreen],
   );
 
-  const value = useMemo(() => ({ controller, fullscreen }), [controller, fullscreen]);
+  const value = useMemo(() => ({ controller, fullscreen, captions }), [controller, fullscreen, captions]);
 
   const element = renderMedia
     ? renderMedia({ ref: mediaRef, mediaProps })

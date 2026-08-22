@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { MediaController } from '@medialab/core';
+import type { MediaCaptions, MediaController } from '@medialab/core';
 
 /** Fullscreen capability exposed by the provider (a container-level concern, not media-element state). */
 export interface MediaFullscreen {
@@ -18,6 +18,8 @@ export interface MediaContextValue {
   controller: MediaController;
   /** Present when a `<MediaProvider>` is mounted; defaults to a no-op otherwise. */
   fullscreen?: MediaFullscreen;
+  /** Present when a `<MediaProvider>` is mounted. */
+  captions?: MediaCaptions;
 }
 
 export const MediaContext = createContext<MediaContextValue | null>(null);

@@ -62,3 +62,26 @@ export interface MediaElementLike {
   play(): Promise<void> | void;
   pause(): void;
 }
+
+/** A text track on the media element (subtitles/captions/descriptions). */
+export interface MediaTextTrack {
+  id: string;
+  kind: string;
+  label: string;
+  language: string;
+}
+
+/** A single cue from the active text track. */
+export interface MediaCue {
+  startTime: number;
+  endTime: number;
+  text: string;
+}
+
+export interface MediaCaptionsState {
+  tracks: MediaTextTrack[];
+  activeTrackId: string | null;
+  isEnabled: boolean;
+  cues: MediaCue[];
+}
+

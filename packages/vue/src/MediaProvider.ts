@@ -1,6 +1,15 @@
 import { defineComponent, h, onBeforeUnmount, onMounted, provide, reactive, ref } from 'vue';
-import { createMediaController } from '@medialab/core';
-import { mediaControllerKey, mediaFullscreenKey, type MediaFullscreen } from './controller.ts';
+import {
+  createMediaCaptions,
+  createMediaController,
+  type TextTrackListLike,
+} from '@medialab/core';
+import {
+  mediaCaptionsKey,
+  mediaControllerKey,
+  mediaFullscreenKey,
+  type MediaFullscreen,
+} from './controller.ts';
 
 export interface MediaProviderProps {
   src?: string;
@@ -42,12 +51,18 @@ export const MediaProvider = defineComponent({
     provide(mediaControllerKey, controller);
     provide(mediaFullscreenKey, fullscreen);
 
+    const captions = createMediaCaptions(
+      () => mediaRef.value?.textTracks as unknown as TextTrackListLike | null,
+    );
+    provide(mediaCaptionsKey, captions);
+
     const onFullscreenChange = () => {
       fullscreen.isFullscreen = document.fullscreenElement === containerRef.value;
     };
 
     onMounted(() => {
       controller.attach(mediaRef.value);
+      captions.refresh();
       document.addEventListener('fullscreenchange', onFullscreenChange);
     });
     onBeforeUnmount(() => {

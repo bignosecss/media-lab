@@ -1,6 +1,6 @@
 export { MediaProvider } from './MediaProvider.ts';
 export type { MediaProviderProps } from './MediaProvider.ts';
-export { mediaControllerKey, mediaFullscreenKey, useMediaController, useMediaFullscreen } from './controller.ts';
+export { mediaControllerKey, mediaFullscreenKey, mediaCaptionsKey, useMediaController, useMediaFullscreen, useMediaCaptions } from './controller.ts';
 export type { MediaFullscreen } from './controller.ts';
 export { useMediaCommand, useMediaElement, useMediaState } from './hooks.ts';
 export { MediaPlayButton } from './components/MediaPlayButton.ts';
@@ -10,4 +10,7 @@ export { MediaTimeDisplay } from './components/MediaTimeDisplay.ts';
 export { MediaBufferedBar } from './components/MediaBufferedBar.ts';
 export { MediaPlaybackRate } from './components/MediaPlaybackRate.ts';
 export { MediaFullscreenButton } from './components/MediaFullscreenButton.ts';
+export { MediaCaptionsButton } from './components/MediaCaptionsButton.ts';
+export { MediaTextTrackSelect } from './components/MediaTextTrackSelect.ts';
+export { MediaTextTrackDisplay } from './components/MediaTextTrackDisplay.ts';
 export type { MediaCommand, MediaController, MediaState } from '@medialab/core';
