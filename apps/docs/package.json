@@ -13,7 +13,7 @@
     "@astrojs/mdx": "^4.2.0",
     "@astrojs/react": "^4.2.0",
     "@astrojs/starlight": "0.31.1",
-    "@astrojs/vue": "^5.0.0",
+    "@astrojs/vue": "^7.0.2",
     "@medialab/core": "workspace:*",
     "@medialab/react": "workspace:*",
     "@medialab/vue": "workspace:*",
