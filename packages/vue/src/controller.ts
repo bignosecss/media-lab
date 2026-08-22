@@ -1,5 +1,5 @@
 import { inject, type InjectionKey } from 'vue';
-import type { MediaController } from '@react-media/core';
+import type { MediaController } from '@medialab/core';
 
 /** Injection key under which a `<MediaProvider>` exposes the controller. */
 export const mediaControllerKey: InjectionKey<MediaController> = Symbol('mediaController');

@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import type { MediaCommand, MediaState } from '@react-media/core';
+import type { MediaCommand, MediaState } from '@medialab/core';
 import { useMediaController } from './controller-context.ts';
 
 /**

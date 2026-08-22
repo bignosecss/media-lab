@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import {
   createMediaController,
   type MediaElementLike,
-} from '@react-media/core';
+} from '@medialab/core';
 import { MediaContext } from '../src/controller-context.ts';
 import { MediaProvider } from '../src/MediaProvider.tsx';
 import { useMediaCommand, useMediaState } from '../src/hooks.ts';

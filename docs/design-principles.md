@@ -18,7 +18,7 @@ We keep media-chrome's "events for user actions, attrs/props for media state" sp
 
 ## A centralized controller, not direct references
 
-media-chrome moved from UI elements discovering a media container (and holding a direct reference) to a single controller handling all operations. We do the same: `@react-media/core`'s controller is the single reader/writer of the element. This makes debugging, monitoring interaction, and refactoring easier.
+media-chrome moved from UI elements discovering a media container (and holding a direct reference) to a single controller handling all operations. We do the same: `@medialab/core`'s controller is the single reader/writer of the element. This makes debugging, monitoring interaction, and refactoring easier.
 
 ## The media element is the single source of truth
 
@@ -42,7 +42,7 @@ A controller component has two parts: the **behavior** (read a state selector, d
 
 ## Named consistently
 
-- Package scope `@react-media/`.
+- Package scope `@medialab/`.
 - Component names describe the primary interaction: `MediaPlayButton`, `MediaProgress`, `MediaVolume`.
 
 ## Progressive capability
@@ -51,4 +51,4 @@ The player starts with the minimum (play/pause, progress, volume) and grows incr
 
 ## What we deliberately keep out
 
-Framework-specific code in the core (`@react-media/core` is framework-agnostic, React-free), web-component/`slot` machinery, and an opinionated app design system. The core must stay usable by any React (or non-React) consumer that can supply a media element and read the state.
+Framework-specific code in the core (`@medialab/core` is framework-agnostic, React-free), web-component/`slot` machinery, and an opinionated app design system. The core must stay usable by any React (or non-React) consumer that can supply a media element and read the state.

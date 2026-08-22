@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import {
   createMediaController,
   type MediaElementLike,
-} from '@react-media/core';
+} from '@medialab/core';
 import { MediaContext, MediaPlayButton, MediaProgress, MediaVolume } from '../src/index.ts';
 
 class FakeMediaElement implements MediaElementLike {

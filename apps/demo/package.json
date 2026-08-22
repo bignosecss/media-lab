@@ -8,8 +8,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-media/core": "workspace:*",
-    "@react-media/react": "workspace:*",
+    "@medialab/core": "workspace:*",
+    "@medialab/react": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

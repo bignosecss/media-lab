@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { MediaController } from '@react-media/core';
+import type { MediaController } from '@medialab/core';
 
 export interface MediaContextValue {
   controller: MediaController;

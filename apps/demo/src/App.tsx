@@ -4,7 +4,7 @@ import {
   MediaProgress,
   MediaProvider,
   MediaVolume,
-} from '@react-media/react';
+} from '@medialab/react';
 
 const SRC =
   'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';

@@ -23,7 +23,7 @@ A media player's nontrivial logic is the controller: subscribe to native events,
 ## Given up
 
 - We did not build web-component rendering (framework-agnostic but against a React-only requirement).
-- Vue is not a supported framework today. `packages/vue` is a **proof-of-concept** that reuses the same `@react-media/core` to validate the seam and serve as an adapter template. We ship React only.
+- Vue is not a supported framework today. `packages/vue` is a **proof-of-concept** that reuses the same `@medialab/core` to validate the seam and serve as an adapter template. We ship React only.
 
 ## Verify
 

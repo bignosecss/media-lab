@@ -1,5 +1,5 @@
 {
-  "name": "@react-media/vue",
+  "name": "@medialab/vue",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -11,7 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@react-media/core": "workspace:*"
+    "@medialab/core": "workspace:*"
   },
   "peerDependencies": {
     "vue": "^3.5.0"

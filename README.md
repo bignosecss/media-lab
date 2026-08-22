@@ -1,4 +1,4 @@
-# react-media-player
+# medialab
 
 A React-only media player library (and the AI-Native harness that builds it), modeled on [media-chrome](https://www.media-chrome.org/docs/en/architecture)'s architecture: independently usable controller components, a centralized controller that is the single source of truth for media state, and a split between user-intent events and media state.
 

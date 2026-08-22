@@ -12,4 +12,4 @@ export { MediaProgress } from './MediaProgress.tsx';
 export type { MediaProgressProps } from './MediaProgress.tsx';
 export { MediaVolume } from './MediaVolume.tsx';
 export type { MediaVolumeProps } from './MediaVolume.tsx';
-export type { MediaCommand, MediaController, MediaState } from '@react-media/core';
+export type { MediaCommand, MediaController, MediaState } from '@medialab/core';

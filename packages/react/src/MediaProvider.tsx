@@ -10,7 +10,7 @@ import {
 import {
   createMediaController,
   type MediaController,
-} from '@react-media/core';
+} from '@medialab/core';
 import { MediaContext } from './controller-context.ts';
 
 /** The media attributes the provider can forward to the default element. */

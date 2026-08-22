@@ -1,5 +1,5 @@
 import { computed, onScopeDispose, shallowRef, type Ref } from 'vue';
-import type { MediaCommand, MediaState } from '@react-media/core';
+import type { MediaCommand, MediaState } from '@medialab/core';
 import { useMediaController } from './controller.ts';
 
 /**

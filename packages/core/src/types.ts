@@ -1,7 +1,7 @@
 /**
  * The framework-agnostic contract for the media layer.
  *
- * `@react-media/core` is React-free. It wraps a media element and exposes a
+ * `@medialab/core` is React-free. It wraps a media element and exposes a
  * typed command/state split: user intents become {@link MediaCommand}, media
  * state is a {@link MediaState} snapshot.
  */

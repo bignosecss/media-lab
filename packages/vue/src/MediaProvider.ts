@@ -1,5 +1,5 @@
 import { defineComponent, h, onBeforeUnmount, onMounted, provide, ref } from 'vue';
-import { createMediaController } from '@react-media/core';
+import { createMediaController } from '@medialab/core';
 import { mediaControllerKey } from './controller.ts';
 
 export interface MediaProviderProps {

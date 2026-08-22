@@ -49,11 +49,11 @@ The hard boundary that makes components independent and the architecture unidire
 - **User intent → `MediaCommand`.** A button press dispatches `{ type: 'togglePlay' }`, a progress drag dispatches `{ type: 'seek', time }`, a volume drag dispatches `{ type: 'setVolume', value }`.
 - **Media state → `MediaState`.** Components read the snapshot (`paused`, `currentTime`, `duration`, `volume`, `muted`, `buffered`, ...) and render.
 
-The command/state types live in `@react-media/core` and are the *contract* between components and controller.
+The command/state types live in `@medialab/core` and are the *contract* between components and controller.
 
 ## React bindings
 
-`@react-media/react` exposes `<MediaProvider>` and hooks:
+`@medialab/react` exposes `<MediaProvider>` and hooks:
 
 - `<MediaProvider mediaElRef | renderMedia>` holds (**owns**) the media element by default and exposes the controller via context. An escape hatch later lets users hand in their own media element (`<canvas>`, a custom element, a remote element).
 - `useMediaState(selector?)` subscribes to the snapshot via `useSyncExternalStore`.
@@ -61,7 +61,7 @@ The command/state types live in `@react-media/core` and are the *contract* betwe
 
 ## Framework adapters (portability)
 
-The design is **framework-agnostic at the core, React-first in practice**. `@react-media/core` is a framework-free **store**: it owns the media element (the single source of truth) and exposes exactly the four methods an adapter needs — `subscribe(listener)`, `getState()`, `dispatch(command)`, `attach(element)` — plus the `MediaState` / `MediaCommand` types. Nothing in `core` imports a UI framework or touches the DOM beyond the media element.
+The design is **framework-agnostic at the core, React-first in practice**. `@medialab/core` is a framework-free **store**: it owns the media element (the single source of truth) and exposes exactly the four methods an adapter needs — `subscribe(listener)`, `getState()`, `dispatch(command)`, `attach(element)` — plus the `MediaState` / `MediaCommand` types. Nothing in `core` imports a UI framework or touches the DOM beyond the media element.
 
 This is deliberately the same shape as a tiny external store, which is what makes it portable. Each framework provides an **adapter** that binds its reactivity to that store:
 
@@ -78,7 +78,7 @@ Adding a framework means adding an adapter, not changing `core`:
 
 An adapter contract is five capabilities: **provide** the controller (context/`provide`), **read** state (`useMediaState`/a composable), **dispatch** commands (`useMediaCommand`), **own & attach the element** (`<MediaProvider>`/a provider), and (optionally) **read** the element. The command/state types and the controller are shared; only the glue and markup are per-framework.
 
-Currently only React is supported (adapter + components in `packages/react`). `packages/vue` is a **proof-of-concept** that reuses the same `@react-media/core` to validate the seam — it is a reference for a future supported adapter, not a shipped framework path.
+Currently only React is supported (adapter + components in `packages/react`). `packages/vue` is a **proof-of-concept** that reuses the same `@medialab/core` to validate the seam — it is a reference for a future supported adapter, not a shipped framework path.
 
 ## Component model
 

@@ -5,7 +5,7 @@ import {
   createMediaController,
   type MediaElementLike,
   type MediaState,
-} from '@react-media/core';
+} from '@medialab/core';
 import { mediaControllerKey } from '../src/controller.ts';
 import { useMediaCommand, useMediaState } from '../src/hooks.ts';
 

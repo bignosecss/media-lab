@@ -1,6 +1,6 @@
 # AGENTS.md
 
-react-media-player is a React-only media player library built on an AI-Native harness. **Everything is a React component or a framework-agnostic controller**; there is no web-component code. Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md](docs/design-principles.md) before changing `packages/`.
+medialab is a React-only media player library built on an AI-Native harness. **Everything is a React component or a framework-agnostic controller**; there is no web-component code. Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md](docs/design-principles.md) before changing `packages/`.
 
 ## Repository layout
 
@@ -28,7 +28,7 @@ Run checks before pushing via [.agents/skills/pre-push-checks](.agents/skills/pr
 
 ## Conventions
 
-- Every package is `@react-media/<name>`; the demo app is `demo`. ESM everywhere (`"type": "module"`).
+- Every package is `@medialab/<name>`; the demo app is `demo`. ESM everywhere (`"type": "module"`).
 - **TypeScript strict** (`strict: true`, `noImplicitAny`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`). No `any` without an explaining comment.
 - **The media element is the single source of truth.** The core controller wraps an element, mirrors its native events into an immutable state snapshot, and applies commands. UI components never reach into the element directly — they read state and dispatch commands.
 - **Split is a hard boundary.** User-intent (a button press) becomes a `MediaCommand`; media state (paused, currentTime) is a `MediaState` snapshot. An element's presentational component never owns behavior state.

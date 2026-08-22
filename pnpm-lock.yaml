@@ -17,10 +17,10 @@ importers:
 
   apps/demo:
     dependencies:
-      '@react-media/core':
+      '@medialab/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@react-media/react':
+      '@medialab/react':
         specifier: workspace:*
         version: link:../../packages/react
       react:
@@ -72,7 +72,7 @@ importers:
       '@base-ui-components/react':
         specifier: 1.0.0-rc.0
         version: 1.0.0-rc.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@react-media/core':
+      '@medialab/core':
         specifier: workspace:*
         version: link:../core
       clsx:
@@ -109,7 +109,7 @@ importers:
 
   packages/vue:
     dependencies:
-      '@react-media/core':
+      '@medialab/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
