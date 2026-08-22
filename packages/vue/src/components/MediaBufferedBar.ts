@@ -1,5 +1,6 @@
 import { defineComponent, h } from 'vue';
 import { useMediaState } from '../hooks.ts';
+import { cn } from '../lib/cn.ts';
 
 /**
  * A buffered-range indicator (Vue). Renders a full-width base track plus one
@@ -9,7 +10,8 @@ import { useMediaState } from '../hooks.ts';
  */
 export const MediaBufferedBar = defineComponent({
   name: 'MediaBufferedBar',
-  setup() {
+  props: { className: { type: String, default: undefined } },
+  setup(props) {
     const buffered = useMediaState((s) => s.buffered);
     const duration = useMediaState((s) => s.duration);
     return () => {
@@ -30,7 +32,7 @@ export const MediaBufferedBar = defineComponent({
         {
           role: 'presentation',
           'aria-hidden': true,
-          class: 'relative h-1.5 w-full overflow-hidden rounded-full bg-media-track/40',
+          class: cn('relative h-1.5 w-full overflow-hidden rounded-full bg-media-track/40', props.className),
         },
         segments,
       );

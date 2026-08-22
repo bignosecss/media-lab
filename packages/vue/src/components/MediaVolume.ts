@@ -1,6 +1,7 @@
 import { defineComponent, h } from 'vue';
 import { useMediaCommand, useMediaState } from '../hooks.ts';
 import { MuteIcon, VolumeIcon } from './icons.ts';
+import { cn } from '../lib/cn.ts';
 
 /**
  * A volume control (Vue): a mute toggle plus a native range slider that
@@ -9,25 +10,30 @@ import { MuteIcon, VolumeIcon } from './icons.ts';
  */
 export const MediaVolume = defineComponent({
   name: 'MediaVolume',
-  setup() {
+  props: {
+    className: { type: String, default: undefined },
+    showMuteButton: { type: Boolean, default: true },
+  },
+  setup(props) {
     const volume = useMediaState((s) => s.volume);
     const muted = useMediaState((s) => s.muted);
     const command = useMediaCommand();
     return () => {
       const displayed = muted.value ? 0 : volume.value;
       const label = muted.value ? 'Unmute' : 'Mute';
-      return h('div', { class: 'flex items-center gap-2' }, [
-        h(
-          'button',
-          {
-            type: 'button',
-            'aria-label': label,
-            class:
-              'inline-flex h-9 w-9 items-center justify-center rounded-full text-media-control-fg transition hover:opacity-90',
-            onClick: () => command({ type: 'toggleMute' }),
-          },
-          [muted.value ? MuteIcon() : VolumeIcon()],
-        ),
+      return h('div', { class: cn('flex items-center gap-2', props.className) }, [
+        props.showMuteButton &&
+          h(
+            'button',
+            {
+              type: 'button',
+              'aria-label': label,
+              class:
+                'inline-flex h-9 w-9 items-center justify-center rounded-full text-media-control-fg transition hover:opacity-90',
+              onClick: () => command({ type: 'toggleMute' }),
+            },
+            [muted.value ? MuteIcon() : VolumeIcon()],
+          ),
         h('input', {
           type: 'range',
           class: 'w-24 accent-media-accent',

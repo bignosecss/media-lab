@@ -1,6 +1,5 @@
 import type { Ref } from 'react';
 import {
-  MediaBufferedBar,
   MediaPlaybackRate,
   MediaPlayButton,
   MediaProgress,
@@ -30,8 +29,7 @@ export function App() {
           <div className="flex items-center gap-3 rounded-2xl bg-black/60 p-3">
             <MediaPlayButton />
             <MediaTimeDisplay />
-            <div className="flex-1 space-y-1">
-              <MediaBufferedBar />
+            <div className="flex-1">
               <MediaProgress />
             </div>
             <MediaVolume />

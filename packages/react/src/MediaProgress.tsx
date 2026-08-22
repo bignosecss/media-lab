@@ -7,14 +7,18 @@ export interface MediaProgressProps {
 
 /**
  * A seek control. Dispatches a `seek` command on change; the slider position is
- * driven by the media element's `currentTime` and `duration`.
+ * driven by the media element's `currentTime` and `duration`. The buffered range
+ * is rendered as a lighter segment inside the same track, behind the played fill.
  */
 export function MediaProgress({ className }: MediaProgressProps) {
   const currentTime = useMediaState((state) => state.currentTime);
   const duration = useMediaState((state) => state.duration);
+  const buffered = useMediaState((state) => state.buffered);
   const command = useMediaCommand();
 
   const max = Number.isFinite(duration) && duration > 0 ? duration : 0;
+  const bufferedEnd = buffered.reduce((furthest, range) => Math.max(furthest, range.end), 0);
+  const bufferedFraction = max > 0 ? Math.min(1, bufferedEnd / max) : 0;
 
   return (
     <Slider
@@ -23,6 +27,7 @@ export function MediaProgress({ className }: MediaProgressProps) {
       min={0}
       max={max}
       step={0.1}
+      buffered={bufferedFraction}
       onChange={(time) => command({ type: 'seek', time })}
       aria-label="Seek"
     />

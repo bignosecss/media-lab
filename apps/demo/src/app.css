@@ -3,9 +3,5 @@
 /* Scan library sources so their Tailwind utilities are generated. */
 @source "../../../packages/react/src";
 
-@theme {
-  --color-media-accent: #6366f1;
-  --color-media-track: #e2e8f0;
-  --color-media-control: rgb(0 0 0 / 0.7);
-  --color-media-control-fg: #ffffff;
-}
+/* Single source of truth for the media player's design tokens. */
+@import "../../../theme/media.css";

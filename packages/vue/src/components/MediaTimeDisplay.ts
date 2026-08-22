@@ -1,5 +1,6 @@
 import { defineComponent, h } from 'vue';
 import { useMediaState } from '../hooks.ts';
+import { cn } from '../lib/cn.ts';
 
 /** Format seconds as `M:SS` (minutes may exceed one digit). */
 function formatTime(seconds: number): string {
@@ -16,7 +17,8 @@ function formatTime(seconds: number): string {
  */
 export const MediaTimeDisplay = defineComponent({
   name: 'MediaTimeDisplay',
-  setup() {
+  props: { className: { type: String, default: undefined } },
+  setup(props) {
     const currentTime = useMediaState((s) => s.currentTime);
     const duration = useMediaState((s) => s.duration);
     return () => {
@@ -24,7 +26,7 @@ export const MediaTimeDisplay = defineComponent({
       const total = known ? formatTime(duration.value) : '0:00';
       return h(
         'span',
-        { class: 'font-mono text-media-control-fg tabular-nums' },
+        { class: cn('font-mono text-media-control-fg tabular-nums', props.className) },
         [`${formatTime(currentTime.value)} / ${total}`],
       );
     };

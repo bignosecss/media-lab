@@ -10,6 +10,8 @@ export interface SliderProps {
   className?: string | undefined;
   'aria-label'?: string;
   'aria-labelledby'?: string;
+  /** 0..1 fraction of the track that is buffered, shown behind the played fill. */
+  buffered?: number;
 }
 
 /**
@@ -24,6 +26,7 @@ export function Slider({
   step = 1,
   onChange,
   className,
+  buffered,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
 }: SliderProps) {
@@ -38,6 +41,13 @@ export function Slider({
     >
       <SliderPrimitive.Control className="relative flex w-full touch-none select-none items-center">
         <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-media-track">
+          {buffered !== undefined && buffered > 0 && (
+            <span
+              aria-hidden
+              className="absolute inset-y-0 left-0 bg-media-buffer"
+              style={{ width: `${Math.min(1, buffered) * 100}%` }}
+            />
+          )}
           <SliderPrimitive.Indicator className="absolute h-full bg-media-accent" />
         </SliderPrimitive.Track>
         <SliderPrimitive.Thumb
