@@ -1,0 +1,29 @@
+---
+title: Core API
+description: The framework-free controller, captions store, and types.
+---
+
+`@medialab/core` is framework-free (no React/Vue import). At its heart is a store over the media element.
+
+## `createMediaController()`
+
+```ts
+const controller = createMediaController();
+controller.attach(videoEl);          // the element stays the single source of truth
+const unsub = controller.subscribe(() => console.log(controller.getState()));
+controller.dispatch({ type: 'togglePlay' });   // commands are the only way to mutate media
+```
+
+**MediaState**: `paused`, `currentTime`, `duration`, `volume`, `muted`, `playbackRate`, `ended`, `buffered`, `buffering`, `error`.
+
+**MediaCommand**: `play`, `pause`, `togglePlay`, `seek{time}`, `setVolume{value}`, `setMuted{value}`, `toggleMute`, `setPlaybackRate{rate}`.
+
+## `createMediaCaptions()`
+
+Reads the element's `textTracks` and exposes a normalized snapshot:
+
+**MediaCaptionsState**: `tracks`, `activeTrackId`, `isEnabled`, `cues`. Plus `setEnabled`, `setActiveTrack`, `refresh`.
+
+## Helpers
+
+- `computeBufferedFraction(buffered, duration)` → 0..1, the single buffer layer both `MediaProgress` and `MediaBufferedBar` derive.

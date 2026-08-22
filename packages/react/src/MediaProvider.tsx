@@ -99,7 +99,10 @@ export function MediaProvider({
     () => ({
       isFullscreen,
       toggle: toggleFullscreen,
-      isSupported: document.fullscreenEnabled,
+      isSupported:
+        typeof document !== 'undefined' && typeof document.fullscreenEnabled === 'boolean'
+          ? document.fullscreenEnabled
+          : false,
     }),
     [isFullscreen, toggleFullscreen],
   );

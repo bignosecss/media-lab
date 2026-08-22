@@ -1,0 +1,33 @@
+---
+title: React
+description: The React adapter — provider, hooks, and components.
+---
+
+`@medialab/react` bundles the adapter with its presentational components.
+
+## Provider
+
+```tsx
+<MediaProvider
+  src={src}
+  playsInline
+  renderMedia={({ ref, mediaProps }) => (
+    <video ref={ref} {...mediaProps} className="aspect-video w-full" />
+  )}
+>
+  {/* controls go here; the provider owns the element + container */}
+</MediaProvider>
+```
+
+## Hooks
+
+- `useMediaController()` — the controller.
+- `useMediaState(selector?)` — subscribe to a slice of state.
+- `useMediaCommand()` — stable `dispatch`.
+- `useMediaElement()` — the attached element.
+- `useMediaFullscreen()` — `{ isFullscreen, toggle, isSupported }`.
+- `useMediaCaptions()` — `{ tracks, activeTrackId, isEnabled, cues, setEnabled, setActiveTrack }`.
+
+## Components
+
+`MediaPlayButton`, `MediaProgress`, `MediaVolume`, `MediaTimeDisplay`, `MediaBufferedBar`, `MediaPlaybackRate`, `MediaFullscreenButton`, `MediaCaptionsButton`, `MediaTextTrackSelect`, `MediaTextTrackDisplay`.

@@ -1,0 +1,47 @@
+---
+title: Getting started
+description: Install and use medialab in a React or Vue 3 app.
+---
+
+## Install
+
+```bash
+pnpm add @medialab/core @medialab/react react react-dom
+```
+
+## React
+
+```tsx
+import { MediaProvider, MediaPlayButton, MediaProgress, MediaVolume } from '@medialab/react';
+
+<MediaProvider src="video.mp4">
+  <MediaPlayButton />
+  <MediaProgress />
+  <MediaVolume />
+</MediaProvider>
+```
+
+## Vue 3
+
+```vue
+<script setup>
+import { MediaProvider, MediaPlayButton, MediaProgress, MediaVolume } from '@medialab/vue';
+</script>
+
+<template>
+  <MediaProvider src="video.mp4">
+    <MediaPlayButton />
+    <MediaProgress />
+    <MediaVolume />
+  </MediaProvider>
+</template>
+```
+
+## Styles
+
+Import the design tokens once so Tailwind generates the component utilities:
+
+```css
+@import "tailwindcss";
+@import "theme/media.css";
+```

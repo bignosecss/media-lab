@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* Scan the adapter sources so the media component utilities are generated. */
+@source "../../../../packages/react/src";
+@source "../../../../packages/vue/src";
+
+/* The single design-token source (macOS pink): defines --color-media-*. */
+@import "../../../../theme/media.css";
+
+/* tint the Starlight chrome with the same macOS pink */
+:root {
+  --sl-color-accent: #ff375f;
+  --sl-color-accent-high: #ff6d8a;
+  --sl-color-accent-low: rgb(255 55 95 / 0.2);
+}

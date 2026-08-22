@@ -36,7 +36,10 @@ export const MediaProvider = defineComponent({
 
     const fullscreen = reactive<MediaFullscreen>({
       isFullscreen: false,
-      isSupported: document.fullscreenEnabled,
+      isSupported:
+        typeof document !== 'undefined' && typeof document.fullscreenEnabled === 'boolean'
+          ? document.fullscreenEnabled
+          : false,
       toggle: () => {
         const container = containerRef.value;
         if (!container) return;

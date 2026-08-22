@@ -1,0 +1,19 @@
+---
+title: Components
+description: Every controller component in one place.
+---
+
+Each component is independently usable, has a default style, accepts `className`, and reads state + dispatches commands (it never touches the media element). The set is identical across React and Vue.
+
+| Component | Behavior |
+|---|---|
+| `MediaPlayButton` | toggles play/pause (`togglePlay`) |
+| `MediaProgress` | seeks (`seek`); renders buffering inside the single track |
+| `MediaVolume` | sets volume + mute (`setVolume`/`toggleMute`) |
+| `MediaTimeDisplay` | shows `current / duration` |
+| `MediaBufferedBar` | standalone buffered indicator (reuses `computeBufferedFraction`) |
+| `MediaPlaybackRate` | sets speed (`setPlaybackRate`) via a native `<select>` |
+| `MediaFullscreenButton` | toggles container fullscreen |
+| `MediaCaptionsButton` | toggles captions on/off |
+| `MediaTextTrackSelect` | picks a text track |
+| `MediaTextTrackDisplay` | renders the active cue |

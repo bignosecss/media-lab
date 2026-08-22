@@ -1,0 +1,29 @@
+---
+title: Vue
+description: The Vue 3 adapter — provider, composables, and components.
+---
+
+`@medialab/vue` bundles the adapter with its presentational components (render-function defined, using native elements for the sliders).
+
+## Provider
+
+```vue
+<MediaProvider :src="src" container-class-name="w-full">
+  <MediaPlayButton />
+  <MediaProgress />
+  <MediaVolume />
+</MediaProvider>
+```
+
+## Composables
+
+- `useMediaController()` — the controller.
+- `useMediaState(selector?)` — a `Ref<T>`.
+- `useMediaCommand()` — stable `dispatch`.
+- `useMediaElement()` — the attached element.
+- `useMediaFullscreen()` — `{ isFullscreen, toggle, isSupported }` (reactive).
+- `useMediaCaptions()` — `{ tracks, activeTrackId, isEnabled, cues, setEnabled, setActiveTrack }` (reactive).
+
+## Components
+
+`MediaPlayButton`, `MediaProgress`, `MediaVolume`, `MediaTimeDisplay`, `MediaBufferedBar`, `MediaPlaybackRate`, `MediaFullscreenButton`, `MediaCaptionsButton`, `MediaTextTrackSelect`, `MediaTextTrackDisplay`.

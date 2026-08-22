@@ -1,0 +1,18 @@
+---
+title: Design system
+description: The macOS-pink design tokens and how to override them.
+---
+
+medialab's visual language is defined by a single set of design tokens in `theme/media.css` (CSS custom properties under the `--color-media-*` namespace), consumed via Tailwind v4 `@theme`. The accent is **macOS system pink**.
+
+```
+--color-media-accent        #ff375f   primary accent (played, active)
+--color-media-accent-strong #e0244e   pressed / hover
+--color-media-buffer        #ff9db1   buffered region
+--color-media-track         #94a3b8   neutral track
+--color-media-control       rgb(17 17 23 / .72)  control surface
+--color-media-control-fg    #ffffff   control foreground
+--radius-media              0.7rem    control radius
+```
+
+These generate Tailwind utilities (e.g. `bg-media-accent`, `text-media-control-fg`). Consumers import the tokens once and override them to re-theme the player without forking.
