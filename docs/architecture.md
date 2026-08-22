@@ -59,6 +59,27 @@ The command/state types live in `@react-media/core` and are the *contract* betwe
 - `useMediaState(selector?)` subscribes to the snapshot via `useSyncExternalStore`.
 - `useMediaCommand()` returns a `dispatch` function.
 
+## Framework adapters (portability)
+
+The design is **framework-agnostic at the core, React-first in practice**. `@react-media/core` is a framework-free **store**: it owns the media element (the single source of truth) and exposes exactly the four methods an adapter needs — `subscribe(listener)`, `getState()`, `dispatch(command)`, `attach(element)` — plus the `MediaState` / `MediaCommand` types. Nothing in `core` imports a UI framework or touches the DOM beyond the media element.
+
+This is deliberately the same shape as a tiny external store, which is what makes it portable. Each framework provides an **adapter** that binds its reactivity to that store:
+
+- **React** (`packages/react`) binds it with `useSyncExternalStore` and exposes it via Context.
+- **Vue** (`packages/vue`, proof-of-concept) binds `subscribe`/`getState`/`dispatch` to `shallowRef` + an effect and exposes it via `provide`/`inject`.
+
+Adding a framework means adding an adapter, not changing `core`:
+
+| What                                    | Where it lives                                      | Shared across frameworks? |
+|-----------------------------------------|-----------------------------------------------------|---------------------------|
+| Controller, state/command types, element interaction | `packages/core`                            | yes |
+| Reactivity glue + provider              | `packages/<framework>` (e.g. `react`, `vue`)          | no |
+| Presentational components (JSX/SFC markup) | `packages/<framework>-components` (e.g. `components` is React's) | no |
+
+An adapter contract is five capabilities: **provide** the controller (context/`provide`), **read** state (`useMediaState`/a composable), **dispatch** commands (`useMediaCommand`), **own & attach the element** (`<MediaProvider>`/a provider), and (optionally) **read** the element. The command/state types and the controller are shared; only the glue and markup are per-framework.
+
+Currently only React is supported (adapter `packages/react`, components `packages/components`). `packages/vue` is a **proof-of-concept** that reuses the same `@react-media/core` to validate the seam — it is a reference for a future supported adapter, not a shipped framework path.
+
 ## Component model
 
 Each controller component (e.g. `MediaPlayButton`) is a thin behavior wrapper:
@@ -75,4 +96,4 @@ This keeps behavior (read state + dispatch) separate from presentation (default 
 - **New media state** → add a field to `MediaState` (+ the event mapping in the controller) and a selector. The element is the source; it must already expose the value.
 - **New command** → add a member to `MediaCommand` and its applying branch in the controller.
 
-Keep media-specific behavior in `core`, React wiring in `react`, presentation in `components`. Do not put element access or state ownership in a component.
+Keep media-specific behavior in `core`, a framework's reactivity glue in its adapter (`react`/`vue`), and its presentational components in its components package. Do not put element access or state ownership in a presentational component — and never in `core`.
