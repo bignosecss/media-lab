@@ -1,4 +1,4 @@
-import { useMediaCommand, useMediaState } from '@react-media/react';
+import { useMediaCommand, useMediaState } from './hooks.ts';
 import { Slider } from './primitives/slider.tsx';
 
 export interface MediaProgressProps {

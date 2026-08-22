@@ -17,9 +17,6 @@ importers:
 
   apps/demo:
     dependencies:
-      '@react-media/components':
-        specifier: workspace:*
-        version: link:../../packages/components
       '@react-media/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -64,49 +61,6 @@ importers:
         specifier: ^3.1.3
         version: 3.2.7(@types/node@22.20.1)(jiti@2.7.0)(jsdom@26.1.0)(lightningcss@1.32.0)
 
-  packages/components:
-    dependencies:
-      '@base-ui-components/react':
-        specifier: 1.0.0-rc.0
-        version: 1.0.0-rc.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@react-media/core':
-        specifier: workspace:*
-        version: link:../core
-      '@react-media/react':
-        specifier: workspace:*
-        version: link:../react
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      tailwind-merge:
-        specifier: ^3.3.0
-        version: 3.6.0
-    devDependencies:
-      '@testing-library/jest-dom':
-        specifier: ^6.6.3
-        version: 6.10.0(@testing-library/dom@10.4.1)
-      '@testing-library/react':
-        specifier: ^16.3.0
-        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@types/react':
-        specifier: ^19.1.0
-        version: 19.2.18
-      '@types/react-dom':
-        specifier: ^19.1.0
-        version: 19.2.4(@types/react@19.2.18)
-      jsdom:
-        specifier: ^26.1.0
-        version: 26.1.0
-      react:
-        specifier: ^19.1.0
-        version: 19.2.8
-      react-dom:
-        specifier: ^19.1.0
-        version: 19.2.8(react@19.2.8)
-      vitest:
-        specifier: ^3.1.3
-        version: 3.2.7(@types/node@22.20.1)(jiti@2.7.0)(jsdom@26.1.0)(lightningcss@1.32.0)
-
   packages/core:
     devDependencies:
       vitest:
@@ -115,9 +69,18 @@ importers:
 
   packages/react:
     dependencies:
+      '@base-ui-components/react':
+        specifier: 1.0.0-rc.0
+        version: 1.0.0-rc.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@react-media/core':
         specifier: workspace:*
         version: link:../core
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      tailwind-merge:
+        specifier: ^3.3.0
+        version: 3.6.0
     devDependencies:
       '@testing-library/jest-dom':
         specifier: ^6.6.3

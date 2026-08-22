@@ -10,7 +10,7 @@ The design is inspired by (but not a copy of) [media-chrome](https://www.media-c
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│  UI components (packages/components)                            │
+│  UI components (packages/react)                                 │
 │  MediaPlayButton · MediaProgress · MediaVolume                  │
 │  read MediaState, dispatch MediaCommand                         │
 └───────────────┬────────────────────────────────────────────────┘
@@ -74,11 +74,11 @@ Adding a framework means adding an adapter, not changing `core`:
 |-----------------------------------------|-----------------------------------------------------|---------------------------|
 | Controller, state/command types, element interaction | `packages/core`                            | yes |
 | Reactivity glue + provider              | `packages/<framework>` (e.g. `react`, `vue`)          | no |
-| Presentational components (JSX/SFC markup) | `packages/<framework>-components` (e.g. `components` is React's) | no |
+| Presentational components (JSX/SFC markup) | bundled in `packages/<framework>` (e.g. React's in `packages/react`) | no |
 
 An adapter contract is five capabilities: **provide** the controller (context/`provide`), **read** state (`useMediaState`/a composable), **dispatch** commands (`useMediaCommand`), **own & attach the element** (`<MediaProvider>`/a provider), and (optionally) **read** the element. The command/state types and the controller are shared; only the glue and markup are per-framework.
 
-Currently only React is supported (adapter `packages/react`, components `packages/components`). `packages/vue` is a **proof-of-concept** that reuses the same `@react-media/core` to validate the seam — it is a reference for a future supported adapter, not a shipped framework path.
+Currently only React is supported (adapter + components in `packages/react`). `packages/vue` is a **proof-of-concept** that reuses the same `@react-media/core` to validate the seam — it is a reference for a future supported adapter, not a shipped framework path.
 
 ## Component model
 
@@ -92,8 +92,8 @@ This keeps behavior (read state + dispatch) separate from presentation (default 
 
 ## Extension points
 
-- **New controller component** → add to `packages/components`, read state via a hook, dispatch a command. No change to `packages/core`.
+- **New controller component** → add to `packages/react` (its components), read state via a hook, dispatch a command. No change to `packages/core`.
 - **New media state** → add a field to `MediaState` (+ the event mapping in the controller) and a selector. The element is the source; it must already expose the value.
 - **New command** → add a member to `MediaCommand` and its applying branch in the controller.
 
-Keep media-specific behavior in `core`, a framework's reactivity glue in its adapter (`react`/`vue`), and its presentational components in its components package. Do not put element access or state ownership in a presentational component — and never in `core`.
+Keep media-specific behavior in `core`, a framework's reactivity glue and its presentational components bundled in its framework package (`react`/`vue`). Do not put element access or state ownership in a presentational component — and never in `core`.

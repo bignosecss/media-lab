@@ -2,9 +2,9 @@ import type { Ref } from 'react';
 import {
   MediaPlayButton,
   MediaProgress,
+  MediaProvider,
   MediaVolume,
-} from '@react-media/components';
-import { MediaProvider } from '@react-media/react';
+} from '@react-media/react';
 
 const SRC =
   'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';

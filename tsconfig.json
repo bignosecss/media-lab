@@ -3,7 +3,7 @@
   "references": [
     { "path": "./packages/core" },
     { "path": "./packages/react" },
-    { "path": "./packages/components" },
+    { "path": "./packages/vue" },
     { "path": "./apps/demo" }
   ]
 }

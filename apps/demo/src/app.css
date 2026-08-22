@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 /* Scan library sources so their Tailwind utilities are generated. */
-@source "../../../packages/components/src";
 @source "../../../packages/react/src";
 
 @theme {

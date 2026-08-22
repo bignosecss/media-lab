@@ -1,4 +1,4 @@
-import { useMediaCommand, useMediaState } from '@react-media/react';
+import { useMediaCommand, useMediaState } from './hooks.ts';
 import { cn } from './lib/cn.ts';
 import { MuteIcon, VolumeIcon } from './primitives/icons.tsx';
 import { Slider } from './primitives/slider.tsx';

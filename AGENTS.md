@@ -5,9 +5,9 @@ react-media-player is a React-only media player library built on an AI-Native ha
 ## Repository layout
 
 ```
-packages/core         framework-agnostic media controller (state + command; single source of truth)
-packages/react        React bindings: <MediaProvider> + hooks
-packages/components   independently usable controller components (play/pause, progress, volume)
+packages/core         framework-free media controller (state + command; single source of truth)
+packages/react        React adapter + components: <MediaProvider>, hooks, play/pause, progress, volume
+packages/vue          Vue adapter + composables (proof of the framework-agnostic seam)
 apps/demo             Vite demo app (Tailwind v4 + CSS-variable tokens)
 docs/                 architecture, design principles, docs standard
 .agents/notes/        decision records (implemented / proposed / archived / rejected)

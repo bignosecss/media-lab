@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useMediaCommand, useMediaState } from '@react-media/react';
+import { useMediaCommand, useMediaState } from './hooks.ts';
 import { cn } from './lib/cn.ts';
 import { PauseIcon, PlayIcon } from './primitives/icons.tsx';
 

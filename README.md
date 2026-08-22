@@ -7,9 +7,9 @@ Read [docs/architecture.md](docs/architecture.md) and [docs/design-principles.md
 ## Workspace
 
 ```
-packages/core         framework-agnostic media controller (state + command, single source of truth)
-packages/react        React bindings: <MediaProvider> + hooks
-packages/components   independently usable controller components (play/pause, progress, volume)
+packages/core         framework-free media controller (state + command; single source of truth)
+packages/react        React adapter + components (MediaProvider, hooks, play/pause, progress, volume)
+packages/vue          Vue adapter + composables (proof-of-concept of the framework-agnostic seam)
 apps/demo             Vite demo app (Tailwind v4 + CSS-variable tokens)
 ```
 

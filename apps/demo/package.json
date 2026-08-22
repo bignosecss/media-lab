@@ -8,7 +8,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-media/components": "workspace:*",
     "@react-media/core": "workspace:*",
     "@react-media/react": "workspace:*",
     "react": "^19.1.0",

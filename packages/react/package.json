@@ -11,7 +11,10 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@react-media/core": "workspace:*"
+    "@base-ui-components/react": "1.0.0-rc.0",
+    "@react-media/core": "workspace:*",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.0"
   },
   "peerDependencies": {
     "react": "^19.0.0",

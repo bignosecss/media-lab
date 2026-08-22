@@ -5,8 +5,7 @@ import {
   createMediaController,
   type MediaElementLike,
 } from '@react-media/core';
-import { MediaContext } from '@react-media/react';
-import { MediaPlayButton, MediaProgress, MediaVolume } from '../src/index.ts';
+import { MediaContext, MediaPlayButton, MediaProgress, MediaVolume } from '../src/index.ts';
 
 class FakeMediaElement implements MediaElementLike {
   paused = true;
