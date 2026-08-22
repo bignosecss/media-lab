@@ -3,7 +3,9 @@ import ReactPlayer from '../components/ReactPlayer.tsx';
 import VuePlayer from '../components/VuePlayer.vue';
 ---
 
-<div class="grid gap-6">
+<!-- `not-content` opts the players out of Starlight's markdown spacing so their
+     internal controls stay on one line and get no injected margin-top. -->
+<div class="not-content grid gap-6">
   <section>
     <h3>React</h3>
     <ReactPlayer client:only="react" />
