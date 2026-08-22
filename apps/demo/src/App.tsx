@@ -1,5 +1,6 @@
 import type { Ref } from 'react';
 import {
+  MediaFullscreenButton,
   MediaPlaybackRate,
   MediaPlayButton,
   MediaProgress,
@@ -34,6 +35,7 @@ export function App() {
             </div>
             <MediaVolume />
             <MediaPlaybackRate />
+            <MediaFullscreenButton />
           </div>
         </MediaProvider>
       </div>

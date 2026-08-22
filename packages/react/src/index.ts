@@ -3,8 +3,8 @@ export type { MediaElementProps, MediaProviderProps } from './MediaProvider.tsx'
 export { cn } from './lib/cn.ts';
 export { Slider } from './primitives/slider.tsx';
 export type { SliderProps } from './primitives/slider.tsx';
-export { MediaContext, useMediaController } from './controller-context.ts';
-export type { MediaContextValue } from './controller-context.ts';
+export { MediaContext, useMediaController, useMediaFullscreen } from './controller-context.ts';
+export type { MediaContextValue, MediaFullscreen } from './controller-context.ts';
 export { useMediaCommand, useMediaElement, useMediaState } from './hooks.ts';
 export { MediaPlayButton } from './MediaPlayButton.tsx';
 export type { MediaPlayButtonProps } from './MediaPlayButton.tsx';
@@ -18,4 +18,6 @@ export { MediaBufferedBar } from './MediaBufferedBar.tsx';
 export type { MediaBufferedBarProps } from './MediaBufferedBar.tsx';
 export { MediaPlaybackRate } from './MediaPlaybackRate.tsx';
 export type { MediaPlaybackRateProps } from './MediaPlaybackRate.tsx';
+export { MediaFullscreenButton } from './MediaFullscreenButton.tsx';
+export type { MediaFullscreenButtonProps } from './MediaFullscreenButton.tsx';
 export type { MediaCommand, MediaController, MediaState } from '@medialab/core';

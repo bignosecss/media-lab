@@ -26,3 +26,15 @@ export function MuteIcon() {
     h('path', { d: 'm16 8 6 8M22 8l-6 8', stroke: 'currentColor', 'stroke-width': '2', fill: 'none' }),
   ]);
 }
+
+export function FullscreenIcon() {
+  return h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'aria-hidden': true, class: 'h-5 w-5' }, [
+    h('path', { d: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5' }),
+  ]);
+}
+
+export function ExitFullscreenIcon() {
+  return h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'aria-hidden': true, class: 'h-5 w-5' }, [
+    h('path', { d: 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5' }),
+  ]);
+}

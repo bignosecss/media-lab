@@ -11,7 +11,7 @@ import {
   createMediaController,
   type MediaController,
 } from '@medialab/core';
-import { MediaContext } from './controller-context.ts';
+import { MediaContext, type MediaFullscreen } from './controller-context.ts';
 
 /** The media attributes the provider can forward to the default element. */
 export interface MediaElementProps {
@@ -35,22 +35,27 @@ export interface MediaProviderProps extends MediaElementProps {
   }) => ReactNode;
   /** An externally-owned controller (advanced/testing). Defaults to an internal one. */
   controller?: MediaController;
+  /** Class applied to the container element the provider renders (the fullscreen target). */
+  containerClassName?: string;
 }
 
 /**
- * Owns the media element and the controller, and exposes both via context.
- * The element is the single source of truth; the controller is the only
- * reader/writer. Render your controls as `children`.
+ * Owns the media element, a container element, and the controller. The media
+ * element is the single source of truth; the controller is the only reader/writer
+ * of it. The container is the fullscreen target. Render your controls as `children`.
  */
 export function MediaProvider({
   children,
   renderMedia,
   controller: controllerProp,
+  containerClassName,
   ...mediaProps
 }: MediaProviderProps) {
   const [internalController] = useState(() => createMediaController());
   const controller = controllerProp ?? internalController;
   const mediaRef = useRef<HTMLMediaElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const setVideoRef = useCallback((node: HTMLVideoElement | null) => {
     mediaRef.current = node;
@@ -61,7 +66,34 @@ export function MediaProvider({
     return () => controller.detach();
   }, [controller]);
 
-  const value = useMemo(() => ({ controller }), [controller]);
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      setIsFullscreen(document.fullscreenElement === containerRef.current);
+    };
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    if (document.fullscreenElement) {
+      void document.exitFullscreen();
+    } else {
+      void container.requestFullscreen();
+    }
+  }, []);
+
+  const fullscreen: MediaFullscreen = useMemo(
+    () => ({
+      isFullscreen,
+      toggle: toggleFullscreen,
+      isSupported: document.fullscreenEnabled,
+    }),
+    [isFullscreen, toggleFullscreen],
+  );
+
+  const value = useMemo(() => ({ controller, fullscreen }), [controller, fullscreen]);
 
   const element = renderMedia
     ? renderMedia({ ref: mediaRef, mediaProps })
@@ -69,8 +101,10 @@ export function MediaProvider({
 
   return (
     <MediaContext.Provider value={value}>
-      {element}
-      {children}
+      <div ref={containerRef} className={containerClassName}>
+        {element}
+        {children}
+      </div>
     </MediaContext.Provider>
   );
 }

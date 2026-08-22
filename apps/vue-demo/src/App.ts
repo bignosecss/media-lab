@@ -1,5 +1,6 @@
 import { defineComponent, h } from 'vue';
 import {
+  MediaFullscreenButton,
   MediaPlaybackRate,
   MediaPlayButton,
   MediaProgress,
@@ -28,6 +29,7 @@ export const App = defineComponent({
                   h('div', { class: 'flex-1' }, [h(MediaProgress)]),
                   h(MediaVolume),
                   h(MediaPlaybackRate),
+                  h(MediaFullscreenButton),
                 ]),
             },
           ),
