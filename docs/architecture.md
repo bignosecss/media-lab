@@ -32,6 +32,48 @@ The design is inspired by (but not a copy of) [media-chrome](https://www.media-c
         └────────────────┘
 ```
 
+### Mermaid diagram
+
+```mermaid
+flowchart TB
+    subgraph UI["UI layer - controller components (React + Vue, parity)"]
+        PB["MediaPlayButton"]
+        PR["MediaProgress<br>(buffer rendered in-track)"]
+        VOL["MediaVolume"]
+        SPD["MediaPlaybackRate"]
+        TD["MediaTimeDisplay"]
+        BB["MediaBufferedBar"]
+        FS["MediaFullscreenButton"]
+        CB["MediaCaptionsButton"]
+        TS["MediaTextTrackSelect"]
+        TDSP["MediaTextTrackDisplay"]
+    end
+
+    subgraph AD["Adapter layer (per framework)"]
+        PROV["MediaProvider<br>(owns media element + container / fullscreen target)"]
+        HOOKS["hooks / composables"]
+    end
+
+    subgraph CO["@medialab/core (framework-free)"]
+        MC["MediaController<br>MediaState + MediaCommand"]
+        CC["MediaCaptions<br>textTracks state"]
+        BF["computeBufferedFraction"]
+    end
+
+    subgraph EL["media element - single source of truth"]
+        V["video / audio"]
+    end
+
+    UI -- "intent -> dispatch(MediaCommand)" --> AD
+    AD -- "useMedia* / composables" --> UI
+    AD -- "dispatch(command)" --> CO
+    CO -- "subscribe / getState -> snapshot" --> AD
+    CO -- "apply command (play/pause/seek/volume/mute/rate)" --> EL
+    EL -- "mirror native events -> MediaState" --> CO
+    EL -- "textTracks -> MediaCaptionsState" --> CO
+    CO -- "fullscreen (provider owns container)" --> AD
+```
+
 ## The controller (single source of truth)
 
 The controller (packages/core) is a framework-agnostic object. It:
@@ -97,3 +139,45 @@ This keeps behavior (read state + dispatch) separate from presentation (default 
 - **New command** → add a member to `MediaCommand` and its applying branch in the controller.
 
 Keep media-specific behavior in `core`, a framework's reactivity glue and its presentational components bundled in its framework package (`react`/`vue`). Do not put element access or state ownership in a presentational component — and never in `core`.
+
+## Event & capability support
+
+### Native media events -> `MediaState`
+
+| Event | State field | Status |
+|---|---|---|
+| `play` / `pause` | `paused` | ✅ supported |
+| `timeupdate` | `currentTime` | ✅ supported |
+| `durationchange` | `duration` | ✅ supported |
+| `volumechange` | `volume` / `muted` | ✅ supported |
+| `waiting` / `playing` / `canplay` | `buffering` | ✅ supported |
+| `loadedmetadata` | metadata | ✅ supported |
+| `ended` | `ended` | ✅ supported |
+| `progress` | `buffered` | ✅ supported |
+| `error` | `error` | ✅ supported |
+| `ratechange` | `playbackRate` | ⬜ not yet — rate set via command, but an external rate change isn't re-captured |
+| `seeking` / `seeked` | seek state | ⬜ not yet |
+| `stalled` / `suspend` / `emptied` / `abort` | network state | ⬜ not yet |
+| `cuechange` | captions active cue | ⬜ roadmap (**字幕实时刷新**) |
+| `addtrack` / `removetrack` | textTracks | ⬜ roadmap (auto refresh) |
+| `enterpictureinpicture` / `leavepictureinpicture` | PiP state | ⬜ roadmap |
+
+### Capabilities / commands
+
+| Capability | Component → command | Status |
+|---|---|---|
+| Play / pause | `MediaPlayButton` → `togglePlay` | ✅ supported |
+| Seek (+ buffer in-track) | `MediaProgress` → `seek` | ✅ supported |
+| Volume / mute | `MediaVolume` → `setVolume` / `toggleMute` | ✅ supported |
+| Playback rate | `MediaPlaybackRate` → `setPlaybackRate` | ✅ supported |
+| Time display | `MediaTimeDisplay` | ✅ supported |
+| Buffered bar | `MediaBufferedBar` / in-track buffer | ✅ supported |
+| Fullscreen | `MediaFullscreenButton` (provider container) | ✅ supported |
+| Captions on/off + pick track + display | `MediaCaptionsButton` / `MediaTextTrackSelect` / `MediaTextTrackDisplay` | ✅ supported (state) |
+| Captions live cue refresh | `cuechange` → cue updates | ⬜ roadmap (**字幕实时刷新**) |
+| Subtitle VTT sample | `<track src="*.vtt">` | ⬜ roadmap |
+| Picture-in-picture | PiP API | ⬜ roadmap |
+| Audio / subtitle language selection | track-list UI | ⬜ roadmap (partial: we list tracks) |
+| Adaptive quality / live (DASH/HLS) | hls.js / dash.js | ⬜ roadmap |
+| Network / buffering badge | `stalled` / `suspend` state UI | ⬜ roadmap |
+| Publishing build | `tsdown` → `dist/` + npm | ⬜ roadmap (**tsdown 发布构建**) |

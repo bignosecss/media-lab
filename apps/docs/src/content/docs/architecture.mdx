@@ -1,18 +1,48 @@
 ---
 title: Architecture
-description: The layering and the framework-agnostic seam.
+description: The layering, the framework-agnostic seam, and what is supported.
 ---
 
 medialab layers a framework-free core under per-framework adapters under presentational components.
 
-```
-UI components (React + Vue)     read state + dispatch intents
-        │ hooks / composables
-<MediaProvider> (per framework) owns the element + a container (fullscreen)
-        │ MediaController / MediaCaptions stores
-packages/core  (no react/vue)   single source of truth, MediaState + MediaCommand
-        │ wraps
-media element  <video>/<audio>  the source of truth
+```mermaid
+flowchart TB
+    subgraph UI["UI layer - controller components (React + Vue, parity)"]
+        PB["MediaPlayButton"]
+        PR["MediaProgress<br>(buffer rendered in-track)"]
+        VOL["MediaVolume"]
+        SPD["MediaPlaybackRate"]
+        TD["MediaTimeDisplay"]
+        BB["MediaBufferedBar"]
+        FS["MediaFullscreenButton"]
+        CB["MediaCaptionsButton"]
+        TS["MediaTextTrackSelect"]
+        TDSP["MediaTextTrackDisplay"]
+    end
+
+    subgraph AD["Adapter layer (per framework)"]
+        PROV["MediaProvider<br>(owns media element + container / fullscreen target)"]
+        HOOKS["hooks / composables"]
+    end
+
+    subgraph CO["@medialab/core (framework-free)"]
+        MC["MediaController<br>MediaState + MediaCommand"]
+        CC["MediaCaptions<br>textTracks state"]
+        BF["computeBufferedFraction"]
+    end
+
+    subgraph EL["media element - single source of truth"]
+        V["video / audio"]
+    end
+
+    UI -- "intent -> dispatch(MediaCommand)" --> AD
+    AD -- "useMedia* / composables" --> UI
+    AD -- "dispatch(command)" --> CO
+    CO -- "subscribe / getState -> snapshot" --> AD
+    CO -- "apply command" --> EL
+    EL -- "mirror native events -> MediaState" --> CO
+    EL -- "textTracks -> MediaCaptionsState" --> CO
+    CO -- "fullscreen (provider owns container)" --> AD
 ```
 
 **The seam is a store.** `@medialab/core` exposes `subscribe` / `getState` / `dispatch` / `attach` and the `MediaState` / `MediaCommand` types. A framework adds an *adapter* that binds its reactivity to that store; `core` never changes.
@@ -21,3 +51,9 @@ media element  <video>/<audio>  the source of truth
 - **Vue 3** binds with `shallowRef` + effect + `provide`/`inject`.
 
 Fullscreen is a **container-level** concern (handled by the provider), and captions are driven by the element's `textTracks` via a framework-free store. See `docs/architecture.md` for the authoritative map.
+
+## Support matrix
+
+**Media events → state:** `play`/`pause` ✅, `timeupdate` ✅, `durationchange` ✅, `volumechange` ✅, `waiting`/`playing`/`canplay` (buffering) ✅, `ended` ✅, `progress` (buffered) ✅, `error` ✅. **Roadmap:** `ratechange`, `seeking`/`seeked`, `stalled`/`suspend`, `cuechange` (live captions), `addtrack`/`removetrack`, PiP events.
+
+**Capabilities → command:** play/pause (`togglePlay`) ✅, seek (`seek`, buffer in-track) ✅, volume/mute ✅, playback rate ✅, time display ✅, buffered bar ✅, fullscreen ✅, captions (on/off + track + display) ✅. **Roadmap:** live cue refresh (字幕实时刷新), VTT sample, picture-in-picture, language selection, adaptive/live (DASH/HLS), network/buffering badge, publishing build (`tsdown`).
