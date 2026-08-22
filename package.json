@@ -2,6 +2,19 @@
   "name": "medialab-monorepo",
   "version": "0.0.0",
   "private": true,
+  "description": "A framework-agnostic media player: a framework-free core plus React and Vue 3 adapters with independently usable controller components.",
+  "license": "MIT",
+  "keywords": [
+    "media",
+    "player",
+    "video",
+    "audio",
+    "react",
+    "vue",
+    "components",
+    "accessible",
+    "frameworks-agnostic"
+  ],
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "engines": {
