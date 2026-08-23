@@ -16,9 +16,9 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/bignosecss/media-lab/edit/main/apps/docs/',
       },
-      social: {
-        github: 'https://github.com/bignosecss/media-lab',
-      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/bignosecss/media-lab' },
+      ],
       customCss: ['./src/styles/global.css'],
       sidebar: [
         { label: 'Intro', link: '/' },
