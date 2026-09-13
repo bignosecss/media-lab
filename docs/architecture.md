@@ -4,7 +4,9 @@
 
 A framework-agnostic media player (React and Vue 3 adapters) where **every piece of UI is an independently usable component** and **one centralized controller is the single source of truth** for the underlying media element. There is no web-component code.
 
-The design is inspired by (but not a copy of) [media-chrome](https://www.media-chrome.org/docs/en/architecture); see [design-principles.md](design-principles.md) for the principles we follow and the React-specific adaptations.
+The design is inspired by (but not a copy of) [media-chrome](https://www.media-chrome.org/docs/en/architecture); see [design-principles.md](design-principles.md) for the principles we follow and the framework-specific adaptations.
+
+This file maps **this repo**. The same design written as a portable, path-free spec — the artifact to hand to an agent that is building a player somewhere else — is [media-player-seam.md](media-player-seam.md).
 
 ## Layering
 
@@ -108,7 +110,7 @@ The design is **framework-agnostic at the core, React-first in practice**. `@med
 This is deliberately the same shape as a tiny external store, which is what makes it portable. Each framework provides an **adapter** that binds its reactivity to that store:
 
 - **React** (`packages/react`) binds it with `useSyncExternalStore` and exposes it via Context.
-- **Vue** (`packages/vue`, proof-of-concept) binds `subscribe`/`getState`/`dispatch` to `shallowRef` + an effect and exposes it via `provide`/`inject`.
+- **Vue** (`packages/vue`) binds `subscribe`/`getState`/`dispatch` to `shallowRef` + an effect and exposes it via `provide`/`inject`.
 
 Adding a framework means adding an adapter, not changing `core`:
 
@@ -134,7 +136,7 @@ This keeps behavior (read state + dispatch) separate from presentation (default 
 
 ## Extension points
 
-- **New controller component** → add to `packages/react` (its components), read state via a hook, dispatch a command. No change to `packages/core`.
+- **New controller component** → add it to `packages/react`, `packages/vue`, or both (they are kept at parity), read state via a hook/composable, dispatch a command. No change to `packages/core`.
 - **New media state** → add a field to `MediaState` (+ the event mapping in the controller) and a selector. The element is the source; it must already expose the value.
 - **New command** → add a member to `MediaCommand` and its applying branch in the controller.
 

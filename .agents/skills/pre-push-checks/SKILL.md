@@ -8,14 +8,14 @@ Match evidence to the surface:
 
 - **Behavior** → `pnpm test` (vitest) for the package you touched.
 - **Types** → `pnpm typecheck` (runs `tsc --noEmit` across packages).
-- **Lint** → `pnpm lint` (oxlint across the repo).
-- **Demo still builds/runs** → `pnpm dev:demo` only by explicit request or when you changed `apps/demo` or a shared seam.
+- **Lint** → `pnpm lint` (oxlint across the repo; it is fast enough that there is no reason to narrow it).
+- **Demo still builds/runs** → `pnpm dev:docs` only by explicit request, or when you changed `apps/docs` or a shared seam.
 
 ## Order
 
 1. `pnpm typecheck`
 2. `pnpm test`
-3. `pnpm --filter <pkg> lint` for touched packages
+3. `pnpm lint`
 
 ## On failure
 

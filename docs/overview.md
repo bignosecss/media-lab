@@ -78,7 +78,10 @@ pnpm lint
 
 ## Status
 
+Frozen on 2026-09-13 — see the [README](../README.md) for why. Everything below describes the state it was frozen in.
+
 - Framework-agnostic core + React and Vue adapters (Vue 3 first-class).
 - MVP + extended controls (time, buffered bar, speed, fullscreen, captions) at parity.
-- Gates: `typecheck` + `test` + `lint` green; both demos build.
-- Deferred: docs site (decision pending), publishing builds (`tsdown` → `dist`), live text-track event re-sync.
+- Gates green at the last commit: `lint`, `typecheck`, `test` (44 tests), docs build (13 pages).
+- Never built: publishing builds (`tsdown` → `dist`), live text-track event re-sync.
+- The portable spec of this design: [media-player-seam.md](media-player-seam.md).
